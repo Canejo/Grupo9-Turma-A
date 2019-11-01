@@ -70,13 +70,12 @@ public class ProjetoIntegradorRPG {
                 break;
         }
     }
-    
+
     static int escolha() {
         int opcao = 0;
         do {
-        char escolhaDoUsuario = input.next().charAt(0);
-        
-        
+            char escolhaDoUsuario = input.next().charAt(0);
+
             switch (escolhaDoUsuario) {
 
                 case 's':
@@ -91,8 +90,8 @@ public class ProjetoIntegradorRPG {
 
             }
             System.out.println(opcao);
-            
-        }while(opcao == 0);
+
+        } while (opcao == 0);
         return opcao;
     }
 
@@ -102,31 +101,58 @@ public class ProjetoIntegradorRPG {
         return num;
     }
 
-    static int dificuldadeJogo() {
+    static String[] dificuldadeJogo() {
+        int opcao = 0;
         Scanner sc = new Scanner(System.in);
+        String[] perguntas = new String[5];
         Random random = new Random();
         String facil[] = new String[]{
-            "",
-            "",
-            "",
-            ""
+            "a",
+            "b",
+            "c",
+            "d"
+
+        };
+        String medio[] = new String[]{
+            "e",
+            "f",
+            "g"
 
         };
         String dificil[] = new String[]{
-            "",
-            "",
-            ""
+            "h",
+            "i",
+            "j"
+        };
+
+        System.out.println("Escolha um nível de dificuldade: \n1-Fácil\n2-Médio\n3-Dificil");
+        int escolhaUser = sc.nextInt();
+        switch (escolhaUser) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+        if(escolhaUser == 1){
+            for (int i = 0; i < facil.length; i++) {
+                perguntas[i] = facil[i];
+            }
+            int perguntaEscolhida = random.nextInt(3) + 1;
+            perguntas[perguntas.length -1] = medio[perguntaEscolhida-1];
             
-        };
-        String medio[] = new String[]{
-            "",
-            "",
-            ""
-        };
-        return 0;
+        }
+
+        return perguntas;
     }
 
     public static void main(String[] args) {
+        String[] a = dificuldadeJogo();
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(a[i]);
+        }
         exibirMenu();
+
     }
 }
