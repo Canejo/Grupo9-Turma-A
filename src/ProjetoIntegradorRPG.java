@@ -20,9 +20,6 @@ public class ProjetoIntegradorRPG {
     };
 
     static void novoJogo() {
-        System.out.println("==================");
-        System.out.println("BEM VINDO AO JOGO");
-        System.out.println("==================");
     }
 
     static void comoJogar() {
@@ -73,6 +70,31 @@ public class ProjetoIntegradorRPG {
                 break;
         }
     }
+    
+    static int escolha() {
+        int opcao = 0;
+        do {
+        char escolhaDoUsuario = input.next().charAt(0);
+        
+        
+            switch (escolhaDoUsuario) {
+
+                case 's':
+                    opcao = 1;
+                    break;
+                case 'n':
+                    opcao = 2;
+                    break;
+                case 'd':
+                    opcao = 3;
+                    break;
+
+            }
+            System.out.println(opcao);
+            
+        }while(opcao == 0);
+        return opcao;
+    }
 
     static int jogarDado1a20() {
         Random geraNum = new Random();
@@ -105,7 +127,6 @@ public class ProjetoIntegradorRPG {
     }
 
     public static void main(String[] args) {
-
         exibirMenu();
     }
 }
