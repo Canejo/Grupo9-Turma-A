@@ -7,7 +7,6 @@ import java.util.Random;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author felipe.acanejo
@@ -21,7 +20,9 @@ public class ProjetoIntegradorRPG {
     };
 
     static void novoJogo() {
-        
+        System.out.println("==================");
+        System.out.println("BEM VINDO AO JOGO");
+        System.out.println("==================");
     }
 
     static void comoJogar() {
@@ -31,6 +32,14 @@ public class ProjetoIntegradorRPG {
     }
 
     static void creditos() {
+        System.out.println("==================");
+        System.out.println("     CRÉDITOS     ");
+        System.out.println("==================");
+        System.out.println("Esse foi o nosso jogo, esperamos que tenhan gostado e obrigado por jogar. :)");
+        System.out.println("==================");
+        System.out.println("     FEITO POR:   ");
+        System.out.println("==================");
+        System.out.println("Felipe Canejo.\nJardel Junior.\nLucas De Jesus.\nLucas Santiago.");
         System.out.println("Aperte qualquer tecla para voltar...");
         input.next();
         exibirMenu();
@@ -65,14 +74,38 @@ public class ProjetoIntegradorRPG {
         }
     }
 
-    static int de1a20Aleat() {
+    static int jogarDado1a20() {
         Random geraNum = new Random();
         int num = 1 + geraNum.nextInt(20);
         return num;
     }
 
+    static int dificuldadeJogo() {
+        Scanner sc = new Scanner(System.in);
+        Random random = new Random();
+        String facil[] = new String[]{
+            "",
+            "",
+            "",
+            ""
+
+        };
+        String dificil[] = new String[]{
+            "",
+            "",
+            ""
+            
+        };
+        String medio[] = new String[]{
+            "",
+            "",
+            ""
+        };
+
+    }
+
     public static void main(String[] args) {
-        System.out.println(de1a20Aleat());
+
         exibirMenu();
     }
 }
