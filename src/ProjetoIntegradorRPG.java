@@ -18,7 +18,13 @@ public class ProjetoIntegradorRPG {
     static String[] enredo = new String[]{
         "Toda história tem um início e a sua começa aqui...",
         "Jornal Senac 10/02/2098 - \"Nova descoberta revolucionária promete rejuvenescer pessoas\"",
-        "Jornal Senac 15/06/2098 - \"A descoberta foi um sucesso e recebe o nome de 942z\""
+        "Jornal Senac 15/06/2098 - \"A descoberta foi um sucesso e recebe o nome de 942z\"",
+        "Jornal Senac 06/09/2099 - \"Teste da milagrosa 942z em humanos começa\"",
+        "Como um dia qualquer você acorda um dia ensolarado, tudo ocorre normalmente a única ",
+        "coisa que te incomoda é esse cheiro incessante de queimado",
+        "quando você se aproxima avista ao lado leste da cidade fumaça subindo, quando passa ",
+        "carros de polícia e de bombeiros.",
+        
     };
     static int linhaUsuario = 0;
 
@@ -36,6 +42,32 @@ public class ProjetoIntegradorRPG {
         }
         System.out.println("Fim");
         creditos();
+    }
+    static int direcaoEnredo(){
+
+         
+          int escolha = escolha();
+
+          switch(escolha){
+              case 1:
+                linhaUsuario = 3;
+                 return linhaUsuario;
+                 
+                 
+              case 2:
+                linhaUsuario = 5;
+                return linhaUsuario;
+                
+              case 3:
+                linhaUsuario = 7;
+                  return linhaUsuario;
+      
+   
+          }
+        
+        
+        
+       return 0;
     }
 
     static void comoJogar() {
