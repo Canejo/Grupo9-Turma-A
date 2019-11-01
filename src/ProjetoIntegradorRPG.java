@@ -23,18 +23,16 @@ public class ProjetoIntegradorRPG {
     
     
     static void novoJogo() {
-        
         for(int i = 0; i < enredo.length; i++) {
             System.out.println(enredo[linhaUsuario]);
             System.out.println("Aparte qualquer letra:");
-            //input.next();
+            input.next();
             
             
             linhaUsuario++;
         }
         System.out.println("Fim");
         creditos();
-        
     }
 
     static void comoJogar() {
@@ -44,6 +42,14 @@ public class ProjetoIntegradorRPG {
     }
 
     static void creditos() {
+        System.out.println("==================");
+        System.out.println("     CRÉDITOS     ");
+        System.out.println("==================");
+        System.out.println("Esse foi o nosso jogo, esperamos que tenhan gostado e obrigado por jogar. :)");
+        System.out.println("==================");
+        System.out.println("     FEITO POR:   ");
+        System.out.println("==================");
+        System.out.println("Felipe Canejo.\nJardel Junior.\nLucas De Jesus.\nLucas Santiago.");
         System.out.println("Aperte qualquer tecla para voltar...");
         input.next();
         exibirMenu();
@@ -77,8 +83,7 @@ public class ProjetoIntegradorRPG {
                 break;
         }
     }
-
-
+    
     static int escolha() {
         int opcao = 0;
         do {
@@ -104,10 +109,34 @@ public class ProjetoIntegradorRPG {
         return opcao;
     }
 
-    static int de1a20Aleat() {
+    static int jogarDado1a20() {
         Random geraNum = new Random();
         int num = 1 + geraNum.nextInt(20);
         return num;
+    }
+
+    static int dificuldadeJogo() {
+        Scanner sc = new Scanner(System.in);
+        Random random = new Random();
+        String facil[] = new String[]{
+            "",
+            "",
+            "",
+            ""
+
+        };
+        String dificil[] = new String[]{
+            "",
+            "",
+            ""
+            
+        };
+        String medio[] = new String[]{
+            "",
+            "",
+            ""
+        };
+        return 0;
     }
 
     public static void main(String[] args) {
