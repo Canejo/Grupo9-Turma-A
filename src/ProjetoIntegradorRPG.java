@@ -1,6 +1,7 @@
 
 import java.util.Scanner;
 import java.util.Random;
+import java.lang.Thread;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,10 +26,11 @@ public class ProjetoIntegradorRPG {
     static void novoJogo() {
         for(int i = 0; i < enredo.length; i++) {
             System.out.println(enredo[linhaUsuario]);
-            System.out.println("Aparte qualquer letra:");
-            input.next();
+            //System.out.println("Aparte qualquer letra:");
+            //input.next();
             
-            
+            try { Thread.sleep(3000); } catch (InterruptedException ex) {
+            }
             linhaUsuario++;
         }
         System.out.println("Fim");
