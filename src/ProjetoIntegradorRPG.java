@@ -1,5 +1,6 @@
 
 import java.util.Scanner;
+import java.util.Random;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -63,6 +64,7 @@ public class ProjetoIntegradorRPG {
         }
     }
 
+
     static int escolha() {
         int opcao = 0;
         do {
@@ -88,9 +90,13 @@ public class ProjetoIntegradorRPG {
         return opcao;
     }
 
+    static int de1a20Aleat() {
+        Random geraNum = new Random();
+        int num = 1 + geraNum.nextInt(20);
+        return num;
+    }
+
     public static void main(String[] args) {
-        escolha();
-        
         exibirMenu();
     }
 }
