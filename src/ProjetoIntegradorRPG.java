@@ -15,17 +15,31 @@ public class ProjetoIntegradorRPG {
 
     static Scanner input = new Scanner(System.in);
     static String[] enredo = new String[]{
-        "",
-        ""
+        "Toda história tem um início e a sua começa aqui...",
+        "Jornal Senac 10/02/2098 - \"Nova descoberta revolucionária promete rejuvenescer pessoas\"",
+        "Jornal Senac 15/06/2098 - \"A descoberta foi um sucesso e recebe o nome de 942z\""
     };
-
+    static int linhaUsuario = 0;
+    
+    
     static void novoJogo() {
-
+        
+        for(int i = 0; i < enredo.length; i++) {
+            System.out.println(enredo[linhaUsuario]);
+            System.out.println("Aparte qualquer letra:");
+            //input.next();
+            
+            
+            linhaUsuario++;
+        }
+        System.out.println("Fim");
+        creditos();
+        
     }
 
     static void comoJogar() {
         System.out.println("Aperte qualquer tecla para voltar...");
-        input.next();
+        
         exibirMenu();
     }
 
@@ -98,5 +112,6 @@ public class ProjetoIntegradorRPG {
 
     public static void main(String[] args) {
         exibirMenu();
+        
     }
 }
