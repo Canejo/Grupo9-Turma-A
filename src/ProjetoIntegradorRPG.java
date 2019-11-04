@@ -82,6 +82,9 @@ public class ProjetoIntegradorRPG {
     }
     
     static void exibirDesafio() {
+        //TODO Exibir alternativas como a, b, c ou d e esperar resposta pelas alternativas
+        //TODO Controle de 3 dicas para o usuário
+        
         boolean acertou = false;
         if(desafiosResolvidos < desafios.length) {
             String[] proximoDesafio = desafios[desafiosResolvidos];
@@ -202,6 +205,9 @@ public class ProjetoIntegradorRPG {
     }
 
     static void dificuldadeJogo() {
+        //TODO Embaralhar quandos for selecionado todos os desafios
+        //TODO Método para retornar quantidade de desafios aleatórios de acordo com quantidade
+        
         System.out.println("Escolha um nível de dificuldade: \n1-Fácil\n2-Médio\n3-Dificil");
         int escolhaUser = input.nextInt();
         int perguntaEscolhida = 0;
