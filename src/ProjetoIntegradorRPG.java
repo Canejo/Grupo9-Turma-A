@@ -15,6 +15,10 @@ import java.lang.Thread;
 public class ProjetoIntegradorRPG {
 
     static Scanner input = new Scanner(System.in);
+    static Random random = new Random();
+    static String[] desafios = new String[5];
+    static int linhaUsuario = 0;
+
     static String[] enredo = new String[]{
         "Toda história tem um início e a sua começa aqui...",
         "Jornal Senac 10/02/2098 - \"Nova descoberta revolucionária promete rejuvenescer pessoas\"",
@@ -24,11 +28,40 @@ public class ProjetoIntegradorRPG {
         "coisa que te incomoda é esse cheiro incessante de queimado",
         "quando você se aproxima avista ao lado leste da cidade fumaça subindo, quando passa ",
         "carros de polícia e de bombeiros.",
-        
     };
-    static int linhaUsuario = 0;
+    
+    static String[] creditos = new String[] {
+        "==================",
+        "     CRÉDITOS     ",
+        "==================",
+        "Esse foi o nosso jogo, esperamos que tenham gostado e obrigado por jogar. :)",
+        "     FEITO POR:   ",
+        "-------------------",
+        "Felipe Canejo",
+        "Jardel Junior",
+        "Lucas De Jesus",
+        "Lucas Santiago"
+    };
+    
+    static String[] facil = new String[]{
+        "Facil a",
+        "Facil b",
+        "Facil c",
+        "Facil d"
+    };
+    static String[] medio = new String[]{
+        "Medio e",
+        "Medio f",
+        "Medio g"
+    };
+    static String[] dificil = new String[]{
+        "Dificil h",
+        "Dificil i",
+        "Dificil j"
+    };
 
     static void novoJogo() {
+        dificuldadeJogo();
         for (int i = 0; i < enredo.length; i++) {
             System.out.println(enredo[linhaUsuario]);
             //System.out.println("Aparte qualquer letra:");
@@ -41,33 +74,28 @@ public class ProjetoIntegradorRPG {
             linhaUsuario++;
         }
         System.out.println("Fim");
-        creditos();
+        creditos(true);
     }
-    static int direcaoEnredo(){
 
-         
-          int escolha = escolha();
+    static int direcaoEnredo() {
 
-          switch(escolha){
-              case 1:
+        int escolha = escolha();
+
+        switch (escolha) {
+            case 1:
                 linhaUsuario = 3;
-                 return linhaUsuario;
-                 
-                 
-              case 2:
+                return linhaUsuario;
+
+            case 2:
                 linhaUsuario = 5;
                 return linhaUsuario;
-                
-              case 3:
+
+            case 3:
                 linhaUsuario = 7;
-                  return linhaUsuario;
-      
-   
-          }
-        
-        
-        
-       return 0;
+                return linhaUsuario;
+
+        }
+        return 0;
     }
 
     static void comoJogar() {
@@ -76,15 +104,17 @@ public class ProjetoIntegradorRPG {
         exibirMenu();
     }
 
-    static void creditos() {
-        System.out.println("==================");
-        System.out.println("     CRÉDITOS     ");
-        System.out.println("==================");
-        System.out.println("Esse foi o nosso jogo, esperamos que tenham gostado e obrigado por jogar. :)");
-
-        System.out.println("     FEITO POR:   ");
-        System.out.println("-------------------");
-        System.out.println("Felipe Canejo.\nJardel Junior.\nLucas De Jesus.\nLucas Santiago.");
+    static void creditos(boolean fimJogo) {
+        
+        for (int i = 0; i < creditos.length; i++) {
+            System.out.println(creditos[i]);
+            if(fimJogo) {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException ex) {
+                }
+            }
+        }
         System.out.println("Aperte qualquer tecla para voltar...");
         input.next();
         exibirMenu();
@@ -114,7 +144,7 @@ public class ProjetoIntegradorRPG {
                 comoJogar();
                 break;
             case 3:
-                creditos();
+                creditos(false);
                 break;
         }
     }
@@ -144,82 +174,48 @@ public class ProjetoIntegradorRPG {
     }
 
     static int jogarDado1a20() {
-        Random geraNum = new Random();
-        int num = 1 + geraNum.nextInt(20);
+        int num = 1 + random.nextInt(20);
         return num;
     }
 
-    static String[] dificuldadeJogo() {
-
-        Scanner sc = new Scanner(System.in);
-        String[] perguntas = new String[5];
-        Random random = new Random();
-        String facil[] = new String[]{
-            "Facil a",
-            "Facil b",
-            "Facil c",
-            "Facil d"
-
-        };
-        String medio[] = new String[]{
-            "Medio e",
-            "Medio f",
-            "Medio g"
-
-        };
-        String dificil[] = new String[]{
-            "Dificil h",
-            "Dificil i",
-            "Dificil j"
-        };
-
+    static void dificuldadeJogo() {
         System.out.println("Escolha um nível de dificuldade: \n1-Fácil\n2-Médio\n3-Dificil");
-        int escolhaUser = sc.nextInt();
+        int escolhaUser = input.nextInt();
+        int perguntaEscolhida = 0;
         switch (escolhaUser) {
             case 1:
+                for (int i = 0; i < facil.length; i++) {
+                    desafios[i] = facil[i];
+                }
+                perguntaEscolhida = random.nextInt(3) + 1;
+                desafios[desafios.length - 1] = medio[perguntaEscolhida - 1];
                 break;
             case 2:
+                for (int i = 0; i < medio.length; i++) {
+                    desafios[i] = medio[i];
+                }
+                perguntaEscolhida = random.nextInt(4) + 1;
+                desafios[desafios.length - 1] = facil[perguntaEscolhida - 1];
+                perguntaEscolhida = random.nextInt(3) + 1;
+                desafios[desafios.length - 1] = dificil[perguntaEscolhida - 1];
                 break;
             case 3:
+                for (int i = 0; i < dificil.length; i++) {
+                    desafios[i] = dificil[i];
+                }
+                perguntaEscolhida = random.nextInt(3) + 1;
+                desafios[desafios.length - 1] = medio[perguntaEscolhida - 1];
+                perguntaEscolhida = random.nextInt(4) + 1;
+                desafios[desafios.length - 1] = facil[perguntaEscolhida - 1];
                 break;
         }
-        if (escolhaUser == 1) {
-            for (int i = 0; i < facil.length; i++) {
-                perguntas[i] = facil[i];
-            }
-            int perguntaEscolhida = random.nextInt(3) + 1;
-            perguntas[perguntas.length - 1] = medio[perguntaEscolhida - 1];
+        
+        for (int i = 0; i < desafios.length; i++) {
+            System.out.println(desafios[i]);
         }
-        if (escolhaUser == 2) {
-            for (int i = 0; i < medio.length; i++) {
-                perguntas[i] = medio[i];
-            }
-            int perguntaEscolhida = random.nextInt(4) + 1;
-            perguntas[perguntas.length - 1] = facil[perguntaEscolhida - 1];
-            perguntaEscolhida = random.nextInt(3) + 1;
-            perguntas[perguntas.length - 1] = dificil[perguntaEscolhida - 1];
-        }
-        if (escolhaUser == 3) {
-            for (int i = 0; i < dificil.length; i++) {
-                perguntas[i] = dificil[i];
-            }
-            int perguntaEscolhida = random.nextInt(3) + 1;
-            perguntas[perguntas.length - 1] = medio[perguntaEscolhida - 1];
-            perguntaEscolhida = random.nextInt(4) + 1;
-            perguntas[perguntas.length - 1] = facil[perguntaEscolhida - 1];
-
-        }
-        System.out.println(perguntas[0]);
-        System.out.println(perguntas[1]);
-        System.out.println(perguntas[2]);
-        System.out.println(perguntas[3]);
-        System.out.println(perguntas[4]);
-        return perguntas;
     }
 
     public static void main(String[] args) {
-        dificuldadeJogo();
-        
-
+        exibirMenu();
     }
 }
