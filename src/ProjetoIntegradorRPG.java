@@ -93,7 +93,6 @@ public class ProjetoIntegradorRPG {
             case 3:
                 linhaUsuario = 7;
                 return linhaUsuario;
-
         }
         return 0;
     }
@@ -105,7 +104,6 @@ public class ProjetoIntegradorRPG {
     }
 
     static void creditos(boolean fimJogo) {
-        
         for (int i = 0; i < creditos.length; i++) {
             System.out.println(creditos[i]);
             if(fimJogo) {
@@ -183,35 +181,35 @@ public class ProjetoIntegradorRPG {
         int escolhaUser = input.nextInt();
         int perguntaEscolhida = 0;
         switch (escolhaUser) {
-            case 1:
+            case 1: //Fácil
                 for (int i = 0; i < facil.length; i++) {
                     desafios[i] = facil[i];
                 }
-                perguntaEscolhida = random.nextInt(3) + 1;
+                
+                perguntaEscolhida = random.nextInt(medio.length) + 1;
                 desafios[desafios.length - 1] = medio[perguntaEscolhida - 1];
                 break;
-            case 2:
+            case 2: //Médio
                 for (int i = 0; i < medio.length; i++) {
                     desafios[i] = medio[i];
                 }
-                perguntaEscolhida = random.nextInt(4) + 1;
+                
+                perguntaEscolhida = random.nextInt(facil.length) + 1;
                 desafios[desafios.length - 1] = facil[perguntaEscolhida - 1];
-                perguntaEscolhida = random.nextInt(3) + 1;
+                
+                perguntaEscolhida = random.nextInt(dificil.length) + 1;
                 desafios[desafios.length - 1] = dificil[perguntaEscolhida - 1];
                 break;
-            case 3:
+            case 3: //Difícil
                 for (int i = 0; i < dificil.length; i++) {
                     desafios[i] = dificil[i];
                 }
                 perguntaEscolhida = random.nextInt(3) + 1;
                 desafios[desafios.length - 1] = medio[perguntaEscolhida - 1];
+                
                 perguntaEscolhida = random.nextInt(4) + 1;
                 desafios[desafios.length - 1] = facil[perguntaEscolhida - 1];
                 break;
-        }
-        
-        for (int i = 0; i < desafios.length; i++) {
-            System.out.println(desafios[i]);
         }
     }
 
