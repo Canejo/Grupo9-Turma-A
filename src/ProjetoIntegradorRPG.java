@@ -92,7 +92,7 @@ public class ProjetoIntegradorRPG {
                 for (int i = 1; i < 5; i++) {
                     System.out.println(proximoDesafio[i]);
                 }
-                System.out.print("Reposta:");
+                System.out.print("Reposta: ");
                 respostaUsuario = input.nextLine();
                 
                 acertou = respostaUsuario.equals(respostaCorreta);
