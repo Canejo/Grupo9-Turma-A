@@ -16,8 +16,9 @@ public class ProjetoIntegradorRPG {
 
     static Scanner input = new Scanner(System.in);
     static Random random = new Random();
-    static String[] desafios = new String[5];
+    static String[][] desafios = new String[5][9];
     static int linhaUsuario = 0;
+    static int desafiosResolvidos = 0;
 
     static String[] enredo = new String[]{
         "Toda história tem um início e a sua começa aqui...",
@@ -43,27 +44,30 @@ public class ProjetoIntegradorRPG {
         "Lucas Santiago"
     };
     
-    static String[] facil = new String[]{
-        "Facil a",
-        "Facil b",
-        "Facil c",
-        "Facil d"
+    static String[][] facil = new String[][]{
+        {"Facil a", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "Resposta certa", "Dica 1", "Dica 2", "Dica 3" },
+        {"Facil b", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "Resposta certa", "Dica 1", "Dica 2", "Dica 3" },
+        {"Facil c", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "Resposta certa", "Dica 1", "Dica 2", "Dica 3" },
+        {"Facil d", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "Resposta certa", "Dica 1", "Dica 2", "Dica 3" },
     };
-    static String[] medio = new String[]{
-        "Medio e",
-        "Medio f",
-        "Medio g"
+    
+    static String[][] medio = new String[][] {
+        { "Medio e", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "Resposta certa", "Dica 1", "Dica 2", "Dica 3" },
+        { "Medio f", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "Resposta certa", "Dica 1", "Dica 2", "Dica 3" },
+        { "Medio g", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "Resposta certa", "Dica 1", "Dica 2", "Dica 3" },
     };
-    static String[] dificil = new String[]{
-        "Dificil h",
-        "Dificil i",
-        "Dificil j"
+    
+    static String[][] dificil = new String[][] {
+        { "Dificil h", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "Resposta certa", "Dica 1", "Dica 2", "Dica 3" },
+        { "Dificil i", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "Resposta certa", "Dica 1", "Dica 2", "Dica 3" },
+        { "Dificil j", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "Resposta certa", "Dica 1", "Dica 2", "Dica 3" },
     };
 
     static void novoJogo() {
         dificuldadeJogo();
         for (int i = 0; i < enredo.length; i++) {
             System.out.println(enredo[linhaUsuario]);
+            exibirDesafio();
             //System.out.println("Aparte qualquer letra:");
             //input.next();
 
@@ -75,6 +79,27 @@ public class ProjetoIntegradorRPG {
         }
         System.out.println("Fim");
         creditos(true);
+    }
+    
+    static void exibirDesafio() {
+        boolean acertou = false;
+        if(desafiosResolvidos < desafios.length) {
+            String[] proximoDesafio = desafios[desafiosResolvidos];
+            String respostaCorreta = proximoDesafio[5];
+            String respostaUsuario;
+            do {
+                System.out.println(proximoDesafio[0]);
+                for (int i = 1; i < 5; i++) {
+                    System.out.println(proximoDesafio[i]);
+                }
+                System.out.print("Reposta:");
+                respostaUsuario = input.nextLine();
+                
+                acertou = respostaUsuario.equals(respostaCorreta);
+            }while(!acertou);
+
+            desafiosResolvidos++;
+        }
     }
 
     static int direcaoEnredo() {
