@@ -13,6 +13,15 @@ import java.lang.Thread;
  * @author felipe.acanejo
  */
 public class ProjetoIntegradorRPG {
+    static final String ANSI_RESET = "\u001B[0m";
+    static final String ANSI_BLACK = "\u001B[30m";
+    static final String ANSI_RED = "\u001B[31m";
+    static final String ANSI_GREEN = "\u001B[32m";
+    static final String ANSI_YELLOW = "\u001B[33m";
+    static final String ANSI_BLUE = "\u001B[34m";
+    static final String ANSI_PURPLE = "\u001B[35m";
+    static final String ANSI_CYAN = "\u001B[36m";
+    static final String ANSI_WHITE = "\u001B[37m";
 
     static Scanner input = new Scanner(System.in);
     static Random random = new Random();
@@ -46,21 +55,21 @@ public class ProjetoIntegradorRPG {
     
     static String[][] facil = new String[][]{
         {"Facil a", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3" },
-        {"Facil b", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "b", "Dica 1", "Dica 2", "Dica 3" },
-        {"Facil c", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "d", "Dica 1", "Dica 2", "Dica 3" },
+        {"Facil b", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3" },
+        {"Facil c", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3" },
         {"Facil d", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3" },
     };
     
     static String[][] medio = new String[][] {
-        { "Medio e", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "c", "Dica 1", "Dica 2", "Dica 3" },
-        { "Medio f", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "b", "Dica 1", "Dica 2", "Dica 3" },
-        { "Medio g", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "d", "Dica 1", "Dica 2", "Dica 3" },
+        { "Medio e", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3" },
+        { "Medio f", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3" },
+        { "Medio g", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3" },
     };
     
     static String[][] dificil = new String[][] {
         { "Dificil h", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3" },
-        { "Dificil i", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "d", "Dica 1", "Dica 2", "Dica 3" },
-        { "Dificil j", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "b", "Dica 1", "Dica 2", "Dica 3" },
+        { "Dificil i", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3" },
+        { "Dificil j", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3" },
     };
 
     static void novoJogo() {
@@ -100,7 +109,7 @@ public class ProjetoIntegradorRPG {
             
             //Separando as dicas em uma variável separada
             String[] dicas = new String[3];
-            int indexDica = 0, desejoUsuario = 0;
+            int indexDica = 0, desejoUsuario = 0, dicasExibidas = 0;
             //Começa do 6 pois na matrix dos desafios as dias estão a partir do indice 6
             for (int i = 6; i < proximoDesafio.length ; i++) {
                 dicas[indexDica] = proximoDesafio[i];
@@ -115,21 +124,30 @@ public class ProjetoIntegradorRPG {
                 for (int i = 1; i < 5; i++) {
                     System.out.println(opcoes[i-1] + ") " + proximoDesafio[i]);
                 }
-                
-                System.out.printf("O que deseja fazer? \n 1) Rolar o dado para uma dica \n 2) Reponder desafio \n");
-                desejoUsuario = input.nextInt();
-                if (desejoUsuario == 1) {
-                    int dado = jogarDado1a20();
-                    System.out.printf("Você tirou %d no dado\n", dado);
-                    if (dado >= 15) {
-                        System.out.println(dicas[0]);
-                    } else {
-                        System.out.println("Não tem dica");
+                if (dicasExibidas < dicas.length) {
+                    System.out.printf("O que deseja fazer? \n 1) Rolar o dado para uma dica \n 2) Reponder desafio \n");
+                    desejoUsuario = input.nextInt();
+                    if (desejoUsuario == 1) {
+                        int dado = jogarDado1a20();
+                        System.out.printf("Você tirou %d no dado\n", dado);
+                        if (dado >= 15) {
+                            System.out.println("Dica " + (dicasExibidas + 1) + "/" + dicas.length + " - " + dicas[dicasExibidas]);
+                            dicasExibidas++;
+                        } else {
+                            System.out.println("Valor insuficiente, tente na próxima.");
+                        }
                     }
+                }else {
+                    System.out.println("Acabou suas dicas!");
                 }
                 System.out.print("Resposta: ");
                 respostaUsuario = input.next(); 
                 acertou = respostaUsuario.equals(respostaCorreta);     
+                if(!acertou) {
+                    System.out.println(ANSI_RED + "Reposta incorreta.");
+                } else {
+                    System.out.println(ANSI_GREEN + "Certa resposta.");
+                }
                                
             }while(!acertou);
 
@@ -172,7 +190,7 @@ public class ProjetoIntegradorRPG {
                 
                 //Espera 2 segundos para exibir o próximo trecho dos créditos
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                 } catch (InterruptedException ex) {
                 }
             }
