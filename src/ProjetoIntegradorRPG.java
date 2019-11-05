@@ -129,8 +129,17 @@ public class ProjetoIntegradorRPG {
                     desejoUsuario = input.nextInt();
                     if (desejoUsuario == 1) {
                         int dado = jogarDado1a20();
-                        System.out.printf("Você tirou %d no dado\n", dado);
-                        if (dado >= 15) {
+                        System.out.printf("Você tirou %s%d%s no dado\n", ANSI_CYAN, dado, ANSI_RESET);
+                        if(dado == 20) {
+                            System.out.println("Como você tirou 20 você tem o direito de ver todas as dicas:");
+                            for (int i = 0; i < dicas.length; i++) {
+                                System.out.println("Dica " + (i + 1) + "/" + dicas.length + " - " + dicas[i]);
+                            }
+                            dicasExibidas = dicas.length + 1;
+                        } else if(dado == 1){
+                            System.out.println("Como você tirou 1 você perdeu todas as dicas.");
+                            dicasExibidas = dicas.length + 1;
+                        } else if (dado >= 15) {
                             System.out.println("Dica " + (dicasExibidas + 1) + "/" + dicas.length + " - " + dicas[dicasExibidas]);
                             dicasExibidas++;
                         } else {
@@ -144,9 +153,9 @@ public class ProjetoIntegradorRPG {
                 respostaUsuario = input.next(); 
                 acertou = respostaUsuario.equals(respostaCorreta);     
                 if(!acertou) {
-                    System.out.println(ANSI_RED + "Reposta incorreta.");
+                    System.out.println(ANSI_RED + "Reposta incorreta." + ANSI_RESET);
                 } else {
-                    System.out.println(ANSI_GREEN + "Certa resposta.");
+                    System.out.println(ANSI_GREEN + "Certa resposta." + ANSI_RESET);
                 }
                                
             }while(!acertou);
