@@ -300,6 +300,11 @@ public class ProjetoIntegradorRPG {
                 break;
         }
     }
+    
+    static String[] retornarItemAleatorio(String[][] desafios){
+        int indiceAleatorio = random.nextInt(desafios.length) + 1;
+        return desafios[indiceAleatorio - 1];
+    }
 
     static String[][] embaralhar(String[][] matriz) {
         Collections.shuffle(Arrays.asList(matriz));
