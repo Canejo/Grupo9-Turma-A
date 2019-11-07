@@ -306,7 +306,27 @@ public class ProjetoIntegradorRPG {
                 break;
         }
     }
+    
+   static int[][] embaralhar(int[][] matriz ){
+       
+       Random aleatorio = new Random();
+        for (int i = 0; i < matriz.length; i++) {
 
+            for (int j = 0; j < matriz.length; j++) {
+                matriz[i][j] = aleatorio.nextInt(5);
+
+            }
+
+        }
+        for (int i = 0; i < matriz.length; i++) {
+
+            for (int j = 0; j < matriz.length; j++) {
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println("\n");
+        }
+        return matriz;
+   }
     public static void main(String[] args) {
         exibirMenu();
     }
