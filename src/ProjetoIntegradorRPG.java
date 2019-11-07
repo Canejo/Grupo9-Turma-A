@@ -32,6 +32,15 @@ public class ProjetoIntegradorRPG {
     static int linhaUsuario = 0;
     static int desafiosResolvidos = 0;
 
+    static String[] comojogarTxt = new String[]{
+        "Este jogo consiste em perguntas e respostas, onde vc decide a dificuldade dessas perguntas.",
+        "", 
+        "A cada pergunta você tem direito a girar um dado, e dependendo do valor desse dado você podera obter dicas para as respectivas perguntas.",
+        "",
+        "Não se preocupe em errar!você podera tentar quantas vezes for necessário."
+
+    };
+
     static String[] enredo = new String[]{
         "Toda história tem um início e a sua começa aqui...",
         "Jornal Senac 10/02/2098 - \"Nova descoberta revolucionária promete rejuvenescer pessoas\"",
@@ -150,7 +159,7 @@ public class ProjetoIntegradorRPG {
                 }
                 System.out.print("Resposta: ");
                 respostaUsuario = input.next();
-                acertou = respostaUsuario.equals(respostaCorreta);
+                acertou = respostaUsuario.equalsIgnoreCase(respostaCorreta);
                 if (!acertou) {
                     System.out.println(ANSI_RED + "Reposta incorreta." + ANSI_RESET);
                 } else {
@@ -184,8 +193,14 @@ public class ProjetoIntegradorRPG {
     }
 
     static void comoJogar() {
+        
+        
+        for (int i = 0; i < comojogarTxt.length; i++) {
+            System.out.println(comojogarTxt[i]);
+        }
+        System.out.println("");
         System.out.println("Aperte qualquer tecla para voltar...");
-
+        input.next();
         exibirMenu();
     }
 
@@ -283,7 +298,7 @@ public class ProjetoIntegradorRPG {
             case 2: //Médio
                 perguntaEscolhida = random.nextInt(facil.length) + 1;
                 desafios[desafios.length - 1] = facil[perguntaEscolhida - 1];
-                
+
                 desafios = embaralhar(medio);
 
                 perguntaEscolhida = random.nextInt(dificil.length) + 1;
@@ -292,10 +307,10 @@ public class ProjetoIntegradorRPG {
             case 3: //Difícil                
                 perguntaEscolhida = random.nextInt(4) + 1;
                 desafios[desafios.length - 1] = facil[perguntaEscolhida - 1];
-                
+
                 perguntaEscolhida = random.nextInt(3) + 1;
                 desafios[desafios.length - 1] = medio[perguntaEscolhida - 1];
-                
+
                 desafios = embaralhar(dificil);
                 break;
         }
