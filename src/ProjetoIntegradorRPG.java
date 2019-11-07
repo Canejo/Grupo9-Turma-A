@@ -282,38 +282,42 @@ public class ProjetoIntegradorRPG {
     }
 
     static void dificuldadeJogo() {
-        //TODO Embaralhar quandos for selecionado todos os desafios
-        //TODO Método para retornar quantidade de desafios aleatórios de acordo com quantidade
-
         System.out.println("Escolha um nível de dificuldade: \n1-Fácil\n2-Médio\n3-Dificil");
         int escolhaUser = input.nextInt();
-        int perguntaEscolhida = 0;
         switch (escolhaUser) {
             case 1: //Fácil
+                
                 desafios = embaralhar(facil);
-
-                perguntaEscolhida = random.nextInt(medio.length) + 1;
-                desafios[desafios.length - 1] = medio[perguntaEscolhida - 1];
+                desafios[desafios.length - 1] = retornarItemAleatorio(medio);
+                
                 break;
             case 2: //Médio
-                perguntaEscolhida = random.nextInt(facil.length) + 1;
-                desafios[desafios.length - 1] = facil[perguntaEscolhida - 1];
-
-                desafios = embaralhar(medio);
-
-                perguntaEscolhida = random.nextInt(dificil.length) + 1;
-                desafios[desafios.length - 1] = dificil[perguntaEscolhida - 1];
+                desafios[0] = retornarItemAleatorio(facil);
+                
+                String[][] medioEmbaralhado = embaralhar(medio);
+                
+                for (int i = 0; i < medioEmbaralhado.length; i++) {
+                    desafios[i + 1] = medioEmbaralhado[i];
+                }
+                
+                desafios[desafios.length - 1] = retornarItemAleatorio(dificil);
                 break;
             case 3: //Difícil                
-                perguntaEscolhida = random.nextInt(4) + 1;
-                desafios[desafios.length - 1] = facil[perguntaEscolhida - 1];
-
-                perguntaEscolhida = random.nextInt(3) + 1;
-                desafios[desafios.length - 1] = medio[perguntaEscolhida - 1];
-
-                desafios = embaralhar(dificil);
+                desafios[0] = retornarItemAleatorio(facil);
+                desafios[1] = retornarItemAleatorio(medio);
+                
+                String[][] dificilEmbaralhado = embaralhar(dificil);
+                
+                for (int i = 0; i < dificilEmbaralhado.length; i++) {
+                    desafios[i + 2] = dificilEmbaralhado[i];
+                }
                 break;
         }
+    }
+    
+    static String[] retornarItemAleatorio(String[][] desafios){
+        int indiceAleatorio = random.nextInt(desafios.length) + 1;
+        return desafios[indiceAleatorio - 1];
     }
 
     static String[][] embaralhar(String[][] matriz) {
