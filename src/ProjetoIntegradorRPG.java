@@ -85,7 +85,7 @@ public class ProjetoIntegradorRPG {
         boolean exibir = false;
 
         if (enredo[linhaUsuario].length > 1) {
-            exibir = enredo[linhaUsuario][1] == "T";
+            exibir = enredo[linhaUsuario][1].equalsIgnoreCase("T");
         }
 
         return exibir;
