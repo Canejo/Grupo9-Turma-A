@@ -152,7 +152,7 @@ public class ProjetoIntegradorRPG {
                     System.out.println(opcoes[i - 1] + ") " + proximoDesafio[i]);
                 }
                 if (dicasExibidas < dicas.length) {
-                    System.out.printf("O que deseja fazer? \n 1) Rolar o dado para uma dica \n 2) Reponder desafio \n");
+                    System.out.printf("O que deseja fazer? \n<1> Rolar o dado para uma dica \n<2> Reponder desafio \n");
                     desejoUsuario = input.nextInt();
                     if (desejoUsuario == 1) {
                         int dado = jogarDado1a20();
@@ -215,10 +215,10 @@ public class ProjetoIntegradorRPG {
         int opcaoMenu = 0;
 
         do {
-            System.out.println("1) Novo jogo");
-            System.out.println("2) Como jogar");
-            System.out.println("3) Créditos");
-            System.out.println("4) Sair");
+            System.out.println("<1> Novo jogo");
+            System.out.println("<2> Como jogar");
+            System.out.println("<3> Créditos");
+            System.out.println("<4> Sair");
             System.out.print("Digite uma opção para continuar: ");
             opcaoMenu = input.nextInt();
         } while (opcaoMenu <= 0 || opcaoMenu > 4);
@@ -295,7 +295,7 @@ public class ProjetoIntegradorRPG {
     }
 
     static void dificuldadeJogo() {
-        System.out.println("Escolha um nível de dificuldade: \n1-Fácil\n2-Médio\n3-Dificil");
+        System.out.println("Escolha um nível de dificuldade: \n<1> Fácil\n<2> Médio\n<3> Dificil");
         int escolhaUser = input.nextInt();
         switch (escolhaUser) {
             case 1: //Fácil
