@@ -41,25 +41,15 @@ public class ProjetoIntegradorRPG {
 
     };
 
-    static String[] enredo = new String[]{
-        "Toda história tem um início e a sua começa aqui...",
-        "Jornal Senac 10/02/2098 - \"Nova descoberta revolucionária promete rejuvenescer pessoas\"",
-        "Jornal Senac 15/06/2098 - \"A descoberta foi um sucesso e recebe o nome de 942z\"",
-        "Jornal Senac 06/09/2099 - \"Teste da milagrosa 942z em humanos começa\"",
-        "Como um dia qualquer você acorda um dia ensolarado, tudo ocorre normalmente a única ",
-        "coisa que te incomoda é esse cheiro incessante de queimado",
-        "quando você se aproxima avista ao lado leste da cidade fumaça subindo, quando passa ",
-        "carros de polícia e de bombeiros.",};
-    
-    static int[][] indiceEnredo = new int[][] {
-        { 0 },
-        { 0 },
-        { 1 },
-        { 0 },
-        { 1 },
-        { 0 },
-        { 0 },
-        { 1 },
+    static String[][] enredo = new String[][]{
+        { "Toda história tem um início e a sua começa aqui..." },
+        { "Jornal Senac 10/02/2098 - \"Nova descoberta revolucionária promete rejuvenescer pessoas\"", "T" },
+        { "Jornal Senac 15/06/2098 - \"A descoberta foi um sucesso e recebe o nome de 942z\"" },
+        { "Jornal Senac 06/09/2099 - \"Teste da milagrosa 942z em humanos começa\"", "T" },
+        { "Como um dia qualquer você acorda um dia ensolarado, tudo ocorre normalmente a única " },
+        { "coisa que te incomoda é esse cheiro incessante de queimado", "T" },
+        { "quando você se aproxima avista ao lado leste da cidade fumaça subindo, quando passa " },
+        { "carros de polícia e de bombeiros." }
     };
 
     static String[] creditos = new String[]{
@@ -93,26 +83,28 @@ public class ProjetoIntegradorRPG {
 
     static boolean indiceExibirDesafio() {
         boolean exibir = false;
-        
-        exibir = indiceEnredo[linhaUsuario][0] == 1;
-        
+
+        if (enredo[linhaUsuario].length > 1) {
+            exibir = enredo[linhaUsuario][1] == "T";
+        }
+
         return exibir;
     }
-    
+
     static void novoJogo() {
         //Escolha da dificuldade e escolha dos desafios
         dificuldadeJogo();
-
+        System.out.println("");
         for (int i = 0; i < enredo.length; i++) {
-            System.out.println(enredo[linhaUsuario]);
-            if(indiceExibirDesafio()) {
+            System.out.println(enredo[linhaUsuario][0]);
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException ex) {
+            }
+            if (indiceExibirDesafio()) {
                 exibirDesafio();
-            }else {
+            } else {
                 //Espera 3 segundos para exibir o próximo trecho da história
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException ex) {
-                }
             }
             linhaUsuario++;
         }
@@ -145,18 +137,18 @@ public class ProjetoIntegradorRPG {
 
             do {
                 //Exibindo enunciado do desafio
-                System.out.println(proximoDesafio[0]);
+                System.out.printf("\n%s\n", proximoDesafio[0]);
 
                 //Exibindo alternativas
                 for (int i = 1; i < 5; i++) {
                     System.out.println(opcoes[i - 1] + ") " + proximoDesafio[i]);
                 }
                 if (dicasExibidas < dicas.length) {
-                    System.out.printf("O que deseja fazer? \n<1> Rolar o dado para uma dica \n<2> Reponder desafio \n");
+                    System.out.printf("\nO que deseja fazer? \n<1> Rolar o dado para uma dica \n<2> Reponder desafio \n");
                     desejoUsuario = input.nextInt();
                     if (desejoUsuario == 1) {
                         int dado = jogarDado1a20();
-                        System.out.printf("Você tirou %s%d%s no dado\n", ANSI_CYAN, dado, ANSI_RESET);
+                        System.out.printf("\nVocê tirou %s%d%s no dado\n", ANSI_CYAN, dado, ANSI_RESET);
                         if (dado == 20) {
                             System.out.println("Como você tirou 20 você tem o direito de ver todas as dicas:");
                             for (int i = 0; i < dicas.length; i++) {
@@ -295,7 +287,7 @@ public class ProjetoIntegradorRPG {
     }
 
     static void dificuldadeJogo() {
-        System.out.println("Escolha um nível de dificuldade: \n<1> Fácil\n<2> Médio\n<3> Dificil");
+        System.out.println("\nEscolha um nível de dificuldade: \n<1> Fácil\n<2> Médio\n<3> Dificil");
         int escolhaUser = input.nextInt();
         switch (escolhaUser) {
             case 1: //Fácil
