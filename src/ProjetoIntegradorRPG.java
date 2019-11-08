@@ -32,9 +32,9 @@ public class ProjetoIntegradorRPG {
     static int linhaUsuario = 0;
     static int desafiosResolvidos = 0;
 
-    static String[] comojogarTxt = new String[]{
+    static String[] comoJogar = new String[]{
         "Este jogo consiste em perguntas e respostas, onde vc decide a dificuldade dessas perguntas.",
-        "", 
+        "",
         "A cada pergunta você tem direito a girar um dado, e dependendo do valor desse dado você podera obter dicas para as respectivas perguntas.",
         "",
         "Não se preocupe em errar!você podera tentar quantas vezes for necessário."
@@ -192,37 +192,6 @@ public class ProjetoIntegradorRPG {
         return 0;
     }
 
-    static void comoJogar() {
-        
-        
-        for (int i = 0; i < comojogarTxt.length; i++) {
-            System.out.println(comojogarTxt[i]);
-        }
-        System.out.println("");
-        System.out.println("Aperte qualquer tecla para voltar...");
-        input.next();
-        exibirMenu();
-    }
-
-    static void creditos(boolean fimJogo) {
-        for (int i = 0; i < creditos.length; i++) {
-            System.out.println(creditos[i]);
-            //Caso seja o fim do jogo exibir igual cinema
-            //Se vier pelo menu exibir tudo de uma vez
-            if (fimJogo) {
-
-                //Espera 2 segundos para exibir o próximo trecho dos créditos
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ex) {
-                }
-            }
-        }
-        System.out.println("Aperte qualquer tecla para voltar...");
-        input.next();
-        exibirMenu();
-    }
-
     static void exibirMenu() {
         int opcaoMenu = 0;
 
@@ -236,6 +205,31 @@ public class ProjetoIntegradorRPG {
         } while (opcaoMenu <= 0 || opcaoMenu > 4);
 
         selecionarMenu(opcaoMenu);
+    }
+
+    static void comoJogar() {
+        exibirTexto(comoJogar, false);
+    }
+
+    static void creditos(boolean fimJogo) {
+        exibirTexto(creditos, fimJogo);
+    }
+
+    static void exibirTexto(String[] texto, boolean interruptor) {
+        for (int i = 0; i < texto.length; i++) {
+            System.out.println(texto[i]);
+
+            if (interruptor) {
+                //Espera 2 segundos para exibir o próximo trecho dos créditos
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                }
+            }
+        }
+        System.out.println("Aperte qualquer tecla para voltar...");
+        input.next();
+        exibirMenu();
     }
 
     static void selecionarMenu(int opcaoMenu) {
@@ -286,36 +280,36 @@ public class ProjetoIntegradorRPG {
         int escolhaUser = input.nextInt();
         switch (escolhaUser) {
             case 1: //Fácil
-                
+
                 desafios = embaralhar(facil);
                 desafios[desafios.length - 1] = retornarItemAleatorio(medio);
-                
+
                 break;
             case 2: //Médio
                 desafios[0] = retornarItemAleatorio(facil);
-                
+
                 String[][] medioEmbaralhado = embaralhar(medio);
-                
+
                 for (int i = 0; i < medioEmbaralhado.length; i++) {
                     desafios[i + 1] = medioEmbaralhado[i];
                 }
-                
+
                 desafios[desafios.length - 1] = retornarItemAleatorio(dificil);
                 break;
             case 3: //Difícil                
                 desafios[0] = retornarItemAleatorio(facil);
                 desafios[1] = retornarItemAleatorio(medio);
-                
+
                 String[][] dificilEmbaralhado = embaralhar(dificil);
-                
+
                 for (int i = 0; i < dificilEmbaralhado.length; i++) {
                     desafios[i + 2] = dificilEmbaralhado[i];
                 }
                 break;
         }
     }
-    
-    static String[] retornarItemAleatorio(String[][] desafios){
+
+    static String[] retornarItemAleatorio(String[][] desafios) {
         int indiceAleatorio = random.nextInt(desafios.length) + 1;
         return desafios[indiceAleatorio - 1];
     }
