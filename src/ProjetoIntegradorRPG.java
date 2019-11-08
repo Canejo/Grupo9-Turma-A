@@ -50,6 +50,17 @@ public class ProjetoIntegradorRPG {
         "coisa que te incomoda é esse cheiro incessante de queimado",
         "quando você se aproxima avista ao lado leste da cidade fumaça subindo, quando passa ",
         "carros de polícia e de bombeiros.",};
+    
+    static int[][] indiceEnredo = new int[][] {
+        { 0 },
+        { 0 },
+        { 1 },
+        { 0 },
+        { 1 },
+        { 0 },
+        { 0 },
+        { 1 },
+    };
 
     static String[] creditos = new String[]{
         "==================",
@@ -80,20 +91,28 @@ public class ProjetoIntegradorRPG {
         {"Dificil i", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},
         {"Dificil j", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},};
 
+    static boolean indiceExibirDesafio() {
+        boolean exibir = false;
+        
+        exibir = indiceEnredo[linhaUsuario][0] == 1;
+        
+        return exibir;
+    }
+    
     static void novoJogo() {
         //Escolha da dificuldade e escolha dos desafios
         dificuldadeJogo();
 
         for (int i = 0; i < enredo.length; i++) {
             System.out.println(enredo[linhaUsuario]);
-            exibirDesafio();
-            //System.out.println("Aparte qualquer letra:");
-            //input.next();
-
-            //Espera 3 segundos para exibir o próximo trecho da história
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException ex) {
+            if(indiceExibirDesafio()) {
+                exibirDesafio();
+            }else {
+                //Espera 3 segundos para exibir o próximo trecho da história
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException ex) {
+                }
             }
             linhaUsuario++;
         }
