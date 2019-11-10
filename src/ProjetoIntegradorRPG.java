@@ -43,13 +43,37 @@ public class ProjetoIntegradorRPG {
 
     static String[][] enredo = new String[][]{
         { "Toda história tem um início e a sua começa aqui..." },
-        { "Jornal Senac 10/02/2098 - \"Nova descoberta revolucionária promete rejuvenescer pessoas\"", "T" },
+        { "Jornal Senac 10/02/2098 - \"Nova descoberta revolucionária promete rejuvenescer pessoas\"" },
         { "Jornal Senac 15/06/2098 - \"A descoberta foi um sucesso e recebe o nome de 942z\"" },
-        { "Jornal Senac 06/09/2099 - \"Teste da milagrosa 942z em humanos começa\"", "T" },
+        { "Jornal Senac 06/09/2099 - \"Teste da milagrosa 942z em humanos começa\"" },
         { "Como um dia qualquer você acorda um dia ensolarado, tudo ocorre normalmente a única " },
-        { "coisa que te incomoda é esse cheiro incessante de queimado", "T" },
+        { "coisa que te incomoda é esse cheiro incessante de queimado" },
         { "quando você se aproxima avista ao lado leste da cidade fumaça subindo, quando passa " },
-        { "carros de polícia e de bombeiros." }
+        { "carros de polícia e de bombeiros." },
+        { "Dica do mestre ligue a televisão." },
+        { "ligar televisão?" },
+        { "Jornal senac - eles esconderam tudo de nós os testes deram errado fujam para o posto de ajuda." },
+        { "bom infelizmente a transmissão foi cortada!" },
+        { "- 	Continua a História	 -" },
+        { "- 	Continua a História	-" },
+        { "Quando você escuta “Saiam Já de suas casas é uma ordem, estamos checando todos os" },
+        { "moradores desta região, então falarei mais uma vez, SAIAM JÀ DE SUAS CASA”." },
+        { "é um policial com um alto - falante." },
+        { "Vai sair de casa ?" },
+        { "chegando na rua o soldado passa uma especie de maquina voce não entendo muito bem" },
+        { "mais parece q eles esta procurando algo. Então ele te libera e continua chamando os outros" },
+        { "moradores da rua.até que eles chegam em frente a casa de seu melhor amigo. batem e" },
+        { "batem mais parece que ele não está lá. entrando no carro do policial você avista em um tipo" },
+        { "de papel alguns números porém esta incompleto." },
+
+    };
+
+    //{ NÚMERO ÍNDICE ENREDO, EXIBIR DESAFIO, DADO DO USUÁRIO >= 18 EXIBIR HISTÓRIA }
+    //0 - NÃO 1 - SIM
+    static int[][] indiceEnredo = new int[][] {
+        { 8, 0, 1 },
+        { 9, 0, 0, 10, 14, 15, 17 },
+        { 22, 1, 0 },
     };
 
     static String[] creditos = new String[]{
@@ -81,31 +105,76 @@ public class ProjetoIntegradorRPG {
         {"Dificil i", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},
         {"Dificil j", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},};
 
+    
+    static int[] retornarIndiceEnrredo() {
+        int[] indice = new int[3];
+
+        for (int i = 0; i < indiceEnredo.length; i++) {
+            if(indiceEnredo[i][0] == linhaUsuario) {
+                indice = indiceEnredo[i];
+            }
+        }
+        return indice;
+    }
+
     static boolean indiceExibirDesafio() {
         boolean exibir = false;
+        int[] indice = retornarIndiceEnrredo();
 
-        if (enredo[linhaUsuario].length > 1) {
-            exibir = enredo[linhaUsuario][1].equalsIgnoreCase("T");
+        if (indice[0] > 0) {
+            exibir = indice[1] == 1;
+        }
+
+        return exibir;
+    }
+
+    static boolean indiceDado() {
+        int desejoUsuario;
+        boolean exibir = true;
+        int[] indice = retornarIndiceEnrredo();
+
+        if (indice[0] > 0) {
+            if (indice[2] == 1) {
+                System.out.printf("\nVocê pode ter uma dica do mestre, deseja jogar o dado? \n<1> Sim \n<2> Não \n");
+                desejoUsuario = input.nextInt();
+                if (desejoUsuario == 1) {
+                    int dado = jogarDado1a20();
+                    exibir = dado >= 18;
+                    if (!exibir) {
+                        System.out.println("Valor insuficiente, tente na próxima.");
+                    }
+                } else {
+                    exibir = false;
+                }
+            }
         }
 
         return exibir;
     }
 
     static void novoJogo() {
+        linhaUsuario = 0;
+        desafiosResolvidos = 0;
         //Escolha da dificuldade e escolha dos desafios
         dificuldadeJogo();
         System.out.println("");
         for (int i = 0; i < enredo.length; i++) {
-            System.out.println(enredo[linhaUsuario][0]);
+            if (indiceDado()) {
+                System.out.println(enredo[linhaUsuario][0]);
+            }
+            //Espera 3 segundos para continuar
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException ex) {
             }
             if (indiceExibirDesafio()) {
                 exibirDesafio();
-            } else {
-                //Espera 3 segundos para exibir o próximo trecho da história
             }
+            int[] indice = retornarIndiceEnrredo();
+            if (indice[0] > 0 && indice.length > 3) {
+                escolha();
+            }
+            
             linhaUsuario++;
         }
         System.out.println("Fim");
@@ -148,7 +217,6 @@ public class ProjetoIntegradorRPG {
                     desejoUsuario = input.nextInt();
                     if (desejoUsuario == 1) {
                         int dado = jogarDado1a20();
-                        System.out.printf("\nVocê tirou %s%d%s no dado\n", ANSI_CYAN, dado, ANSI_RESET);
                         if (dado == 20) {
                             System.out.println("Como você tirou 20 você tem o direito de ver todas as dicas:");
                             for (int i = 0; i < dicas.length; i++) {
@@ -260,7 +328,9 @@ public class ProjetoIntegradorRPG {
     static int escolha() {
         int opcao = 0;
         do {
-            char escolhaDoUsuario = input.next().charAt(0);
+            System.out.println("<S> Sim");
+            System.out.println("<N> Não");
+            char escolhaDoUsuario = input.next().toLowerCase().charAt(0);
 
             switch (escolhaDoUsuario) {
 
@@ -270,20 +340,17 @@ public class ProjetoIntegradorRPG {
                 case 'n':
                     opcao = 2;
                     break;
-                case 'd':
-                    opcao = 3;
-                    break;
 
             }
-            System.out.println(opcao);
-
         } while (opcao == 0);
         return opcao;
     }
 
     static int jogarDado1a20() {
-        int num = 1 + random.nextInt(20);
-        return num;
+        int dado = 1 + random.nextInt(20);
+        System.out.printf("\nVocê tirou %s%d%s no dado\n", ANSI_CYAN, dado, ANSI_RESET);
+
+        return dado;
     }
 
     static void dificuldadeJogo() {
