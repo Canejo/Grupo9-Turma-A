@@ -68,11 +68,12 @@ public class ProjetoIntegradorRPG {
 
     };
 
-    //{ NÚMERO ÍNDICE ENREDO, EXIBIR DESAFIO, DADO DO USUÁRIO >= 18 EXIBIR HISTÓRIA }
+    //{ NÚMERO ÍNDICE ENREDO, EXIBIR DESAFIO, DADO DO USUÁRIO >= 15 EXIBIR HISTÓRIA }
     //0 - NÃO 1 - SIM
     static int[][] indiceEnredo = new int[][] {
         { 8, 0, 1 },
         { 9, 0, 0, 10, 14, 15, 17 },
+        { 17, 0, 0, 10, 14, 15, 17 },
         { 22, 1, 0 },
     };
 
@@ -139,7 +140,7 @@ public class ProjetoIntegradorRPG {
                 desejoUsuario = input.nextInt();
                 if (desejoUsuario == 1) {
                     int dado = jogarDado1a20();
-                    exibir = dado >= 18;
+                    exibir = dado >= 15;
                     if (!exibir) {
                         System.out.println("Valor insuficiente, tente na próxima.");
                     }
@@ -162,19 +163,20 @@ public class ProjetoIntegradorRPG {
             if (indiceDado()) {
                 System.out.println(enredo[linhaUsuario][0]);
             }
-            //Espera 3 segundos para continuar
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException ex) {
-            }
-            if (indiceExibirDesafio()) {
-                exibirDesafio();
-            }
+
             int[] indice = retornarIndiceEnrredo();
             if (indice[0] > 0 && indice.length > 3) {
                 escolha();
+            } else {
+                //Espera 3 segundos para continuar
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException ex) {
+                }
+                if (indiceExibirDesafio()) {
+                    exibirDesafio();
+                }
             }
-            
             linhaUsuario++;
         }
         System.out.println("Fim");
