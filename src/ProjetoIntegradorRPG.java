@@ -51,7 +51,7 @@ public class ProjetoIntegradorRPG {
         { "quando você se aproxima avista ao lado leste da cidade fumaça subindo, quando passa " },
         { "carros de polícia e de bombeiros." },
         { "Dica do mestre ligue a televisão." },
-        { "ligar televisão?" },
+        { "Ligar televisão?" },
         { "Jornal senac - eles esconderam tudo de nós os testes deram errado fujam para o posto de ajuda." },
         { "bom infelizmente a transmissão foi cortada!" },
         { "- 	Continua a História	 -" },
@@ -73,7 +73,7 @@ public class ProjetoIntegradorRPG {
     static int[][] indiceEnredo = new int[][] {
         { 8, 0, 1 },
         { 9, 0, 0, 10, 14, 15, 17 },
-        { 17, 0, 0, 10, 14, 15, 17 },
+        { 17, 0, 0, 18, 19, 20, 22 },
         { 22, 1, 0 },
     };
 
@@ -142,7 +142,7 @@ public class ProjetoIntegradorRPG {
                     int dado = jogarDado1a20();
                     exibir = dado >= 15;
                     if (!exibir) {
-                        System.out.println("Valor insuficiente, tente na próxima.");
+                        System.out.printf("Valor insuficiente, tente na próxima.\n\n");
                     }
                 } else {
                     exibir = false;
@@ -160,13 +160,23 @@ public class ProjetoIntegradorRPG {
         dificuldadeJogo();
         System.out.println("");
         for (int i = 0; i < enredo.length; i++) {
+            int[] indice = retornarIndiceEnrredo();
+            boolean linhaEscolhaUsuario = indice[0] > 0 && indice.length > 3;
+            if (linhaEscolhaUsuario) {
+                System.out.println("");   
+            }
             if (indiceDado()) {
                 System.out.println(enredo[linhaUsuario][0]);
             }
-
-            int[] indice = retornarIndiceEnrredo();
-            if (indice[0] > 0 && indice.length > 3) {
-                escolha();
+            
+            if (linhaEscolhaUsuario) {
+                int escolhaUsuario = escolha();
+                System.out.println("");
+                if (escolhaUsuario == 1) { //Sim
+                    linhaUsuario = indice[3];
+                } else if(escolhaUsuario == 2) { //Não
+                    linhaUsuario = indice[5];
+                }
             } else {
                 //Espera 3 segundos para continuar
                 try {
@@ -176,8 +186,8 @@ public class ProjetoIntegradorRPG {
                 if (indiceExibirDesafio()) {
                     exibirDesafio();
                 }
+                linhaUsuario++;
             }
-            linhaUsuario++;
         }
         System.out.println("Fim");
 
@@ -232,7 +242,7 @@ public class ProjetoIntegradorRPG {
                             System.out.println("Dica " + (dicasExibidas + 1) + "/" + dicas.length + " - " + dicas[dicasExibidas]);
                             dicasExibidas++;
                         } else {
-                            System.out.println("Valor insuficiente, tente na próxima.");
+                            System.out.printf("Valor insuficiente, tente na próxima.\n\n");
                         }
                     }
                 } else {
@@ -251,26 +261,6 @@ public class ProjetoIntegradorRPG {
 
             desafiosResolvidos++;
         }
-    }
-
-    static int direcaoEnredo() {
-
-        int escolha = escolha();
-
-        switch (escolha) {
-            case 1:
-                linhaUsuario = 3;
-                return linhaUsuario;
-
-            case 2:
-                linhaUsuario = 5;
-                return linhaUsuario;
-
-            case 3:
-                linhaUsuario = 7;
-                return linhaUsuario;
-        }
-        return 0;
     }
 
     static void exibirMenu() {
