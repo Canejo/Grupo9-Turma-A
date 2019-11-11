@@ -41,39 +41,41 @@ public class ProjetoIntegradorRPG {
 
     };
 
-    static String[][] enredo = new String[][]{
-        { "Toda história tem um início e a sua começa aqui..." },
-        { "Jornal Senac 10/02/2098 - \"Nova descoberta revolucionária promete rejuvenescer pessoas\"" },
-        { "Jornal Senac 15/06/2098 - \"A descoberta foi um sucesso e recebe o nome de 942z\"" },
-        { "Jornal Senac 06/09/2099 - \"Teste da milagrosa 942z em humanos começa\"" },
-        { "Como um dia qualquer você acorda um dia ensolarado, tudo ocorre normalmente a única " },
-        { "coisa que te incomoda é esse cheiro incessante de queimado" },
-        { "quando você se aproxima avista ao lado leste da cidade fumaça subindo, quando passa " },
-        { "carros de polícia e de bombeiros." },
-        { "Dica do mestre ligue a televisão." },
-        { "Ligar televisão?" },
-        { "Jornal senac - eles esconderam tudo de nós os testes deram errado fujam para o posto de ajuda." },
-        { "bom infelizmente a transmissão foi cortada!" },
-        { "- 	Continua a História	 -" },
-        { "- 	Continua a História	-" },
-        { "Quando você escuta “Saiam Já de suas casas é uma ordem, estamos checando todos os" },
-        { "moradores desta região, então falarei mais uma vez, SAIAM JÀ DE SUAS CASA”." },
-        { "é um policial com um alto - falante." },
-        { "Vai sair de casa ?" },
-        { "chegando na rua o soldado passa uma especie de maquina voce não entendo muito bem" },
-        { "mais parece q eles esta procurando algo. Então ele te libera e continua chamando os outros" },
-        { "moradores da rua.até que eles chegam em frente a casa de seu melhor amigo. batem e" },
-        { "batem mais parece que ele não está lá. entrando no carro do policial você avista em um tipo" },
-        { "de papel alguns números porém esta incompleto." },
-
+    static String[] enredo = new String[]{
+        "Toda história tem um início e a sua começa aqui...",
+        "Jornal Senac 10/02/2098 - \"Nova descoberta revolucionária promete rejuvenescer pessoas\"",
+         "Jornal Senac 15/06/2098 - \"A descoberta foi um sucesso e recebe o nome de 942z\"" ,
+         "Jornal Senac 06/09/2099 - \"Teste da milagrosa 942z em humanos começa\"" ,
+         "Como um dia qualquer você acorda um dia ensolarado, tudo ocorre normalmente a única " ,
+         "coisa que te incomoda é esse cheiro incessante de queimado" ,
+         "quando você se aproxima avista ao lado leste da cidade fumaça subindo, quando passa " ,
+         "carros de polícia e de bombeiros." ,
+         "Dica do mestre ligue a televisão." ,
+         "Ligar televisão?" ,
+         "Jornal senac - eles esconderam tudo de nós os testes deram errado fujam para o posto de ajuda." ,
+         "bom infelizmente a transmissão foi cortada!" ,
+         "- 	Continua a História	 -" ,
+         "- 	Continua a História	-" ,
+         "Quando você escuta “Saiam Já de suas casas é uma ordem, estamos checando todos os" ,
+         "moradores desta região, então falarei mais uma vez, SAIAM JÀ DE SUAS CASA”." ,
+         "é um policial com um alto - falante." ,
+         "Vai sair de casa ?" ,
+         "chegando na rua o soldado passa uma especie de maquina voce não entendo muito bem" ,
+         "mais parece q eles esta procurando algo. Então ele te libera e continua chamando os outros" ,
+         "moradores da rua. Até que eles chegam em frente a casa de seu melhor amigo. batem e" ,
+         "batem mais parece que ele não está lá. entrando no carro do policial você avista em um tipo" ,
+         "de papel alguns números porém esta incompleto." ,
     };
+
+    static int ultimaEscolha = -1;
+    static int[] ultimoIndice = new int[7];
 
     //{ NÚMERO ÍNDICE ENREDO, EXIBIR DESAFIO, DADO DO USUÁRIO >= 15 EXIBIR HISTÓRIA }
     //0 - NÃO 1 - SIM
     static int[][] indiceEnredo = new int[][] {
         { 8, 0, 1 },
-        { 9, 0, 0, 10, 14, 15, 17 },
-        { 17, 0, 0, 18, 19, 20, 22 },
+        { 9, 0, 0, 10, 14, 15, 16 },
+        { 17, 0, 0, 18, 19, 20, 21 },
         { 22, 1, 0 },
     };
 
@@ -136,8 +138,8 @@ public class ProjetoIntegradorRPG {
 
         if (indice[0] > 0) {
             if (indice[2] == 1) {
-                System.out.printf("\nVocê pode ter uma dica do mestre, deseja jogar o dado? \n<1> Sim \n<2> Não \n");
-                desejoUsuario = input.nextInt();
+                System.out.printf("\nVocê pode ter uma dica do mestre, deseja jogar o dado? \n");
+                desejoUsuario = escolha();
                 if (desejoUsuario == 1) {
                     int dado = jogarDado1a20();
                     exibir = dado >= 15;
@@ -156,25 +158,29 @@ public class ProjetoIntegradorRPG {
     static void novoJogo() {
         linhaUsuario = 0;
         desafiosResolvidos = 0;
+        limparEscolha();
+        
         //Escolha da dificuldade e escolha dos desafios
         dificuldadeJogo();
         System.out.println("");
-        for (int i = 0; i < enredo.length; i++) {
+        do {
             int[] indice = retornarIndiceEnrredo();
             boolean linhaEscolhaUsuario = indice[0] > 0 && indice.length > 3;
             if (linhaEscolhaUsuario) {
                 System.out.println("");   
             }
             if (indiceDado()) {
-                System.out.println(enredo[linhaUsuario][0]);
+                System.out.println(enredo[linhaUsuario]);
             }
             
             if (linhaEscolhaUsuario) {
-                int escolhaUsuario = escolha();
+                //Salvando info do indice para verificar onde trecho da escolha termina
+                ultimoIndice = indice;
+                ultimaEscolha = escolha();
                 System.out.println("");
-                if (escolhaUsuario == 1) { //Sim
+                if (ultimaEscolha == 1) { //Sim
                     linhaUsuario = indice[3];
-                } else if(escolhaUsuario == 2) { //Não
+                } else if(ultimaEscolha == 2) { //Não
                     linhaUsuario = indice[5];
                 }
             } else {
@@ -186,12 +192,26 @@ public class ProjetoIntegradorRPG {
                 if (indiceExibirDesafio()) {
                     exibirDesafio();
                 }
-                linhaUsuario++;
+                
+                if (ultimaEscolha == 1 && linhaUsuario == ultimoIndice[4]){
+                    linhaUsuario = ultimoIndice[6] + 1;
+                    limparEscolha();
+                } else if(ultimaEscolha == 1  && linhaUsuario == ultimoIndice[6]) {
+                    limparEscolha();
+                    linhaUsuario++;
+                } else {
+                    linhaUsuario++;
+                }
             }
-        }
+        } while(linhaUsuario < enredo.length);
         System.out.println("Fim");
 
         creditos(true);
+    }
+    
+    static void limparEscolha() {
+        ultimaEscolha = -1;
+        ultimoIndice = new int[7];
     }
 
     static void exibirDesafio() {
