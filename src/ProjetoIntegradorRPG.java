@@ -2,6 +2,8 @@
 import java.util.Scanner;
 import java.util.Random;
 import java.lang.Thread;
+import java.util.Arrays;
+import java.util.Collections;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,95 +16,314 @@ import java.lang.Thread;
  */
 public class ProjetoIntegradorRPG {
 
+    static final String ANSI_RESET = "\u001B[0m";
+    static final String ANSI_RED = "\u001B[31m";
+    static final String ANSI_GREEN = "\u001B[32m";
+    static final String ANSI_CYAN = "\u001B[36m";
+
     static Scanner input = new Scanner(System.in);
+    static Random random = new Random();
+    static String[][] desafios = new String[5][9];
+    static int linhaUsuario = 0;
+    static int desafiosResolvidos = 0;
+    static int ultimaEscolha = -1;
+    static int[] ultimoIndice = new int[7];
+
+    static String[] comoJogar = new String[]{
+        "Este jogo consiste em perguntas e respostas, onde vc decide a dificuldade dessas perguntas.",
+        "",
+        "A cada pergunta você tem direito a girar um dado, e dependendo do valor desse dado você podera obter dicas para as respectivas perguntas.",
+        "",
+        "Não se preocupe em errar!você podera tentar quantas vezes for necessário."
+
+    };
+
     static String[] enredo = new String[]{
         "Toda história tem um início e a sua começa aqui...",
         "Jornal Senac 10/02/2098 - \"Nova descoberta revolucionária promete rejuvenescer pessoas\"",
-        "Jornal Senac 15/06/2098 - \"A descoberta foi um sucesso e recebe o nome de 942z\"",
-        "Jornal Senac 06/09/2099 - \"Teste da milagrosa 942z em humanos começa\"",
-        "Como um dia qualquer você acorda um dia ensolarado, tudo ocorre normalmente a única ",
-        "coisa que te incomoda é esse cheiro incessante de queimado",
-        "quando você se aproxima avista ao lado leste da cidade fumaça subindo, quando passa ",
-        "carros de polícia e de bombeiros.",
-        
+         "Jornal Senac 15/06/2098 - \"A descoberta foi um sucesso e recebe o nome de 942z\"" ,
+         "Jornal Senac 06/09/2099 - \"Teste da milagrosa 942z em humanos começa\"" ,
+         "Como um dia qualquer você acorda um dia ensolarado, tudo ocorre normalmente a única " ,
+         "coisa que te incomoda é esse cheiro incessante de queimado" ,
+         "quando você se aproxima avista ao lado leste da cidade fumaça subindo, quando passa " ,
+         "carros de polícia e de bombeiros." ,
+         "Dica do mestre ligue a televisão." ,
+         "Ligar televisão?" ,
+         "Jornal senac - eles esconderam tudo de nós os testes deram errado fujam para o posto de ajuda." ,
+         "bom infelizmente a transmissão foi cortada!" ,
+         "- 	Continua a História	 -" ,
+         "- 	Continua a História	-" ,
+         "Quando você escuta “Saiam Já de suas casas é uma ordem, estamos checando todos os" ,
+         "moradores desta região, então falarei mais uma vez, SAIAM JÀ DE SUAS CASA”." ,
+         "é um policial com um alto - falante." ,
+         "Vai sair de casa ?" ,
+         "chegando na rua o soldado passa uma especie de maquina voce não entendo muito bem" ,
+         "mais parece q eles esta procurando algo. Então ele te libera e continua chamando os outros" ,
+         "moradores da rua. Até que eles chegam em frente a casa de seu melhor amigo. batem e" ,
+         "batem mais parece que ele não está lá. entrando no carro do policial você avista em um tipo" ,
+         "de papel alguns números porém esta incompleto." ,
     };
-    static int linhaUsuario = 0;
+
+    //{ NÚMERO ÍNDICE ENREDO, EXIBIR DESAFIO, DADO DO USUÁRIO >= 15 EXIBIR HISTÓRIA }
+    //0 - NÃO 1 - SIM
+    static int[][] indiceEnredo = new int[][] {
+        { 8, 0, 1 },
+        { 9, 0, 0, 10, 14, 15, 16 },
+        { 17, 0, 0, 18, 19, 20, 21 },
+        { 22, 1, 0 },
+    };
+
+    static String[] creditos = new String[]{
+        "==================",
+        "     CRÉDITOS     ",
+        "==================",
+        "Esse foi o nosso jogo, esperamos que tenham gostado e obrigado por jogar. :)",
+        "     FEITO POR:   ",
+        "-------------------",
+        "Felipe Canejo",
+        "Jardel Junior",
+        "Lucas De Jesus",
+        "Lucas Santiago"
+    };
+
+    static String[][] facil = new String[][]{
+        {"O número 1001 1001 0111‬ em sistema de base 2, seria representado por qual opção abaixo:", "2455", "998", "1000", "45E", "a", "Dica 1", "Dica 2", "Dica 3"},
+        {"Os computadores utilizam o sistema binário que é um sistema de numeração em que todas as quantidades \nse representam com base em dois números, ou seja, (0 e 1). \nEm um computador o número 2012, em base decimal, será representado, em base binária, por:", "110111", "11111011100", "111110111000", "111110111", "b", "Dica 1", "Dica 2", "Dica 3"},
+        {"Este o enigma (C=A.B) corresponde a qual porta lógica?", "Porta NAND", "Porta NOT", "Porta AND", "Porta OR", "c", "Dica 1", "Dica 2", "Dica 3"},
+        {"Abaixo apresentamos quatro números em suas representações binárias. \n\n1) 0101001\n2) 1101001\n3) 0001101\n4) 1010110\n\nAssinale a alternativa que apresenta o somatório dos 4 números acima convertidos para o formato decimal.", "245", "101", "111", "267", "a", "Dica 1", "Dica 2", "Dica 3"},};
+
+    static String[][] medio = new String[][]{
+        {"Para atravessar um lago(L), deve ser usado a seguinte expressão lógica L = !P, \nonde P são as pessoas, podemos deduzir que:", "As pessoas que querem atravessar tem como valor 0", "As pessoas que querem atravessar tem como valor 1", "O lago funciona como a porta lógica inversora", "Alternativas a e c estão corretas", "d", "Dica 1", "Dica 2", "Dica 3"},
+        {"Portas ou circuitos lógicos são dispositivos que operam um ou mais sinais lógicos \nde entrada para produzir uma e somente uma saída, dependente da função implementada no circuito. \nSão geralmente usadas em circuitos eletrônicos, por causa das situações que os sinais\ndeste tipo de circuito podem apresentar:presença de sinal, ou “1”; e ausência de sinal, ou “0”.\nPara a tabela verdade apresentada a seguir, é correto afirmar que, em ordem, as portas lógicas são: ", "NAND; NOR; AND; OR", "NAND; NOR; OR; AND", "AND; NOR; NAND; OR", "NAND; OR; AND; NOR", "c", "Dica 1", "Dica 2", "Dica 3"},
+        {"Medio g", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},};
+
+    static String[][] dificil = new String[][]{
+        {"Dificil h", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},
+        {"Dificil i", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},
+        {"Dificil j", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},};
+
+    
+    static int[] retornarIndiceEnrredo() {
+        int[] indice = new int[3];
+
+        for (int i = 0; i < indiceEnredo.length; i++) {
+            if(indiceEnredo[i][0] == linhaUsuario) {
+                indice = indiceEnredo[i];
+            }
+        }
+        return indice;
+    }
+
+    static boolean indiceExibirDesafio() {
+        boolean exibir = false;
+        int[] indice = retornarIndiceEnrredo();
+
+        if (indice[0] > 0) {
+            exibir = indice[1] == 1;
+        }
+
+        return exibir;
+    }
+
+    static boolean indiceDado() {
+        int desejoUsuario;
+        boolean exibir = true;
+        int[] indice = retornarIndiceEnrredo();
+
+        if (indice[0] > 0) {
+            if (indice[2] == 1) {
+                System.out.printf("\nVocê pode ter uma dica do mestre, deseja jogar o dado? \n");
+                desejoUsuario = escolha();
+                if (desejoUsuario == 1) {
+                    int dado = jogarDado1a20();
+                    exibir = dado >= 15;
+                    if (!exibir) {
+                        System.out.printf("Valor insuficiente, tente na próxima.\n");
+                    }
+                    aguardar(1);
+                } else {
+                    exibir = false;
+                }
+            }
+        }
+
+        return exibir;
+    }
 
     static void novoJogo() {
-        for (int i = 0; i < enredo.length; i++) {
-            System.out.println(enredo[linhaUsuario]);
-            //System.out.println("Aparte qualquer letra:");
-            //input.next();
-
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException ex) {
+        linhaUsuario = 0;
+        desafiosResolvidos = 0;
+        limparEscolha();
+        
+        //Escolha da dificuldade e escolha dos desafios
+        dificuldadeJogo();
+        System.out.println("");
+        do {
+            int[] indice = retornarIndiceEnrredo();
+            boolean linhaEscolhaUsuario = indice[0] > 0 && indice.length > 3;
+            if (linhaEscolhaUsuario) {
+                System.out.println("");   
             }
-            linhaUsuario++;
-        }
-        System.out.println("Fim");
-        creditos();
-    }
-    static int direcaoEnredo(){
+            boolean exibirEnredo = indiceDado();
+            if (exibirEnredo) {
+                System.out.println(enredo[linhaUsuario]);
+            }
+            
+            if (linhaEscolhaUsuario) {
+                //Salvando info do indice para verificar onde trecho da escolha termina
+                ultimoIndice = indice;
+                ultimaEscolha = escolha();
+                System.out.println("");
+                if (ultimaEscolha == 1) { //Sim
+                    linhaUsuario = indice[3];
+                } else if(ultimaEscolha == 2) { //Não
+                    linhaUsuario = indice[5];
+                }
+            } else {
+                //Espera 3 segundos para continuar
+                if(exibirEnredo) {
+                    aguardar(3);
+                }
 
-         
-          int escolha = escolha();
-
-          switch(escolha){
-              case 1:
-                linhaUsuario = 3;
-                 return linhaUsuario;
-                 
-                 
-              case 2:
-                linhaUsuario = 5;
-                return linhaUsuario;
+                if (indiceExibirDesafio()) {
+                    exibirDesafio();
+                }
                 
-              case 3:
-                linhaUsuario = 7;
-                  return linhaUsuario;
-      
-   
-          }
-        
-        
-        
-       return 0;
+                if (ultimaEscolha == 1 && linhaUsuario == ultimoIndice[4]){
+                    linhaUsuario = ultimoIndice[6] + 1;
+                    limparEscolha();
+                } else if(ultimaEscolha == 1  && linhaUsuario == ultimoIndice[6]) {
+                    limparEscolha();
+                    linhaUsuario++;
+                } else {
+                    linhaUsuario++;
+                }
+            }
+        } while(linhaUsuario < enredo.length);
+        System.out.println("Fim");
+
+        creditos(true);
+    }
+    
+    static void limparEscolha() {
+        ultimaEscolha = -1;
+        ultimoIndice = new int[7];
     }
 
-    static void comoJogar() {
-        System.out.println("Aperte qualquer tecla para voltar...");
+    static void exibirDesafio() {
+        //TODO Controle de 3 dicas para o usuário
 
-        exibirMenu();
-    }
+        //Verificando se ainda existe desafios a serem resolvidos
+        if (desafiosResolvidos < desafios.length) {
+            boolean acertou = false;
+            //Recuperando próximo desafio
+            String[] proximoDesafio = desafios[desafiosResolvidos];
+            //Retornando resposta correta do desafio
+            String respostaCorreta = proximoDesafio[5];
+            String respostaUsuario;
+            char[] opcoes = new char[]{'a', 'b', 'c', 'd'};
 
-    static void creditos() {
-        System.out.println("==================");
-        System.out.println("     CRÉDITOS     ");
-        System.out.println("==================");
-        System.out.println("Esse foi o nosso jogo, esperamos que tenham gostado e obrigado por jogar. :)");
+            //Separando as dicas em uma variável separada
+            String[] dicas = new String[3];
+            int indexDica = 0, desejoUsuario = 0, dicasExibidas = 0;
+            //Começa do 6 pois na matrix dos desafios as dias estão a partir do indice 6
+            for (int i = 6; i < proximoDesafio.length; i++) {
+                dicas[indexDica] = proximoDesafio[i];
+                indexDica++;
+            }
 
-        System.out.println("     FEITO POR:   ");
-        System.out.println("-------------------");
-        System.out.println("Felipe Canejo.\nJardel Junior.\nLucas De Jesus.\nLucas Santiago.");
-        System.out.println("Aperte qualquer tecla para voltar...");
-        input.next();
-        exibirMenu();
+            do {
+                //Exibindo enunciado do desafio
+                
+                System.out.printf("\n%sDESAFIO %d%s\n", ANSI_CYAN, desafiosResolvidos + 1, ANSI_RESET);
+                System.out.printf("\n%s\n", proximoDesafio[0]);
+
+                //Exibindo alternativas
+                for (int i = 1; i < 5; i++) {
+                    System.out.println(opcoes[i - 1] + ") " + proximoDesafio[i]);
+                }
+                if (dicasExibidas < dicas.length) {
+                    System.out.printf("\nO que deseja fazer? \n<1> Rolar o dado para uma dica \n<2> Reponder desafio \n");
+                    desejoUsuario = input.nextInt();
+                    if (desejoUsuario == 1) {
+                        int dado = jogarDado1a20();
+                        if (dado == 20) {
+                            System.out.println("Como você tirou 20 você tem o direito de ver todas as dicas:");
+                            for (int i = 0; i < dicas.length; i++) {
+                                System.out.println("Dica " + (i + 1) + "/" + dicas.length + " - " + dicas[i]);
+                            }
+                            dicasExibidas = dicas.length + 1;
+                        } else if (dado == 1) {
+                            System.out.println("Como você tirou 1 você perdeu todas as dicas.");
+                            dicasExibidas = dicas.length + 1;
+                        } else if (dado >= 15) {
+                            System.out.println("Dica " + (dicasExibidas + 1) + "/" + dicas.length + " - " + dicas[dicasExibidas]);
+                            dicasExibidas++;
+                        } else {
+                            System.out.printf("Valor insuficiente, tente na próxima.\n\n");
+                        }
+                    }
+                } else {
+                    System.out.println("Acabou suas dicas!");
+                }
+                System.out.print("Resposta: ");
+                respostaUsuario = input.next();
+                acertou = respostaUsuario.equalsIgnoreCase(respostaCorreta);
+                if (!acertou) {
+                    System.out.println(ANSI_RED + "Reposta incorreta." + ANSI_RESET);
+                } else {
+                    System.out.println(ANSI_GREEN + "Certa resposta." + ANSI_RESET);
+                }
+                aguardar(1);
+
+            } while (!acertou);
+
+            desafiosResolvidos++;
+        }
     }
 
     static void exibirMenu() {
         int opcaoMenu = 0;
 
         do {
-            System.out.println("1) Novo jogo");
-            System.out.println("2) Como jogar");
-            System.out.println("3) Créditos");
-            System.out.println("4) Sair");
+            System.out.println("<1> Novo jogo");
+            System.out.println("<2> Como jogar");
+            System.out.println("<3> Créditos");
+            System.out.println("<4> Sair");
             System.out.print("Digite uma opção para continuar: ");
             opcaoMenu = input.nextInt();
         } while (opcaoMenu <= 0 || opcaoMenu > 4);
 
         selecionarMenu(opcaoMenu);
+    }
+    
+    static void aguardar(int segundos) {
+        try {
+            Thread.sleep(segundos * 1000);
+        } catch (InterruptedException ex) {
+        }
+    }
+
+    static void comoJogar() {
+        exibirTexto(comoJogar, false);
+    }
+
+    static void creditos(boolean fimJogo) {
+        exibirTexto(creditos, fimJogo);
+    }
+
+    static void exibirTexto(String[] texto, boolean interruptor) {
+        for (int i = 0; i < texto.length; i++) {
+            System.out.println(texto[i]);
+
+            if (interruptor) {
+                //Espera 2 segundos para exibir o próximo trecho dos créditos
+                aguardar(1);
+            }
+        }
+        System.out.println("Aperte qualquer tecla para voltar...");
+        input.next();
+        exibirMenu();
     }
 
     static void selecionarMenu(int opcaoMenu) {
@@ -114,7 +335,7 @@ public class ProjetoIntegradorRPG {
                 comoJogar();
                 break;
             case 3:
-                creditos();
+                creditos(false);
                 break;
         }
     }
@@ -122,7 +343,9 @@ public class ProjetoIntegradorRPG {
     static int escolha() {
         int opcao = 0;
         do {
-            char escolhaDoUsuario = input.next().charAt(0);
+            System.out.println("<S> Sim");
+            System.out.println("<N> Não");
+            char escolhaDoUsuario = input.next().toLowerCase().charAt(0);
 
             switch (escolhaDoUsuario) {
 
@@ -132,94 +355,64 @@ public class ProjetoIntegradorRPG {
                 case 'n':
                     opcao = 2;
                     break;
-                case 'd':
-                    opcao = 3;
-                    break;
 
             }
-            System.out.println(opcao);
-
         } while (opcao == 0);
         return opcao;
     }
 
     static int jogarDado1a20() {
-        Random geraNum = new Random();
-        int num = 1 + geraNum.nextInt(20);
-        return num;
+        int dado = 1 + random.nextInt(20);
+        System.out.printf("\nVocê tirou %s%d%s no dado\n", ANSI_CYAN, dado, ANSI_RESET);
+
+        return dado;
     }
 
-    static String[] dificuldadeJogo() {
-
-        Scanner sc = new Scanner(System.in);
-        String[] perguntas = new String[5];
-        Random random = new Random();
-        String facil[] = new String[]{
-            "Facil a",
-            "Facil b",
-            "Facil c",
-            "Facil d"
-
-        };
-        String medio[] = new String[]{
-            "Medio e",
-            "Medio f",
-            "Medio g"
-
-        };
-        String dificil[] = new String[]{
-            "Dificil h",
-            "Dificil i",
-            "Dificil j"
-        };
-
-        System.out.println("Escolha um nível de dificuldade: \n1-Fácil\n2-Médio\n3-Dificil");
-        int escolhaUser = sc.nextInt();
+    static void dificuldadeJogo() {
+        System.out.println("\nEscolha um nível de dificuldade: \n<1> Fácil\n<2> Médio\n<3> Dificil");
+        int escolhaUser = input.nextInt();
         switch (escolhaUser) {
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-        }
-        if (escolhaUser == 1) {
-            for (int i = 0; i < facil.length; i++) {
-                perguntas[i] = facil[i];
-            }
-            int perguntaEscolhida = random.nextInt(3) + 1;
-            perguntas[perguntas.length - 1] = medio[perguntaEscolhida - 1];
-        }
-        if (escolhaUser == 2) {
-            for (int i = 0; i < medio.length; i++) {
-                perguntas[i] = medio[i];
-            }
-            int perguntaEscolhida = random.nextInt(4) + 1;
-            perguntas[perguntas.length - 1] = facil[perguntaEscolhida - 1];
-            perguntaEscolhida = random.nextInt(3) + 1;
-            perguntas[perguntas.length - 1] = dificil[perguntaEscolhida - 1];
-        }
-        if (escolhaUser == 3) {
-            for (int i = 0; i < dificil.length; i++) {
-                perguntas[i] = dificil[i];
-            }
-            int perguntaEscolhida = random.nextInt(3) + 1;
-            perguntas[perguntas.length - 1] = medio[perguntaEscolhida - 1];
-            perguntaEscolhida = random.nextInt(4) + 1;
-            perguntas[perguntas.length - 1] = facil[perguntaEscolhida - 1];
+            case 1: //Fácil
 
+                desafios = embaralhar(facil);
+                desafios[desafios.length - 1] = retornarItemAleatorio(medio);
+
+                break;
+            case 2: //Médio
+                desafios[0] = retornarItemAleatorio(facil);
+
+                String[][] medioEmbaralhado = embaralhar(medio);
+
+                for (int i = 0; i < medioEmbaralhado.length; i++) {
+                    desafios[i + 1] = medioEmbaralhado[i];
+                }
+
+                desafios[desafios.length - 1] = retornarItemAleatorio(dificil);
+                break;
+            case 3: //Difícil                
+                desafios[0] = retornarItemAleatorio(facil);
+                desafios[1] = retornarItemAleatorio(medio);
+
+                String[][] dificilEmbaralhado = embaralhar(dificil);
+
+                for (int i = 0; i < dificilEmbaralhado.length; i++) {
+                    desafios[i + 2] = dificilEmbaralhado[i];
+                }
+                break;
         }
-        System.out.println(perguntas[0]);
-        System.out.println(perguntas[1]);
-        System.out.println(perguntas[2]);
-        System.out.println(perguntas[3]);
-        System.out.println(perguntas[4]);
-        return perguntas;
+    }
+
+    static String[] retornarItemAleatorio(String[][] desafios) {
+        int indiceAleatorio = random.nextInt(desafios.length) + 1;
+        return desafios[indiceAleatorio - 1];
+    }
+
+    static String[][] embaralhar(String[][] matriz) {
+        Collections.shuffle(Arrays.asList(matriz));
+        return matriz;
     }
 
     public static void main(String[] args) {
-        dificuldadeJogo();
-        
-
+        exibirMenu();
     }
 }

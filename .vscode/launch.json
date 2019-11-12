@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ProjetoIntegradorRPG",
+            "request": "launch",
+            "mainClass": "ProjetoIntegradorRPG",
+            "projectName": "ProjetoIntegradorRPG_9f5c7693"
+        }
+    ]
+}
