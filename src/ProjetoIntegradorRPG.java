@@ -123,18 +123,19 @@ public class ProjetoIntegradorRPG {
         " - Amigo : “Anda logo eu não vou conseguir segurar por muito tempo… Rápido!!! ”",
         " ",
         "As batidas parece que aumentaram quando seu amigo cai…",
-        " ",
-        
-        
-        };
+        " ",};
 
     //{ NÚMERO ÍNDICE ENREDO, EXIBIR DESAFIO, DADO DO USUÁRIO >= 15 EXIBIR HISTÓRIA }
     //0 - NÃO 1 - SIM
     static int[][] indiceEnredo = new int[][]{
         {8, 0, 1},
-        {9, 0, 0, 10, 14, 15, 16},
+        {9, 0, 0, 10, 0, 0, 16},
         {17, 0, 0, 18, 19, 20, 21},
-        {22, 1, 0},};
+        {22, 1, 0},
+        {42, 1, 0},
+        {79, 1, 0},
+        {81, 1, 0},
+        {83, 1, 0},};
 
     static String[] creditos = new String[]{
         "==================",
