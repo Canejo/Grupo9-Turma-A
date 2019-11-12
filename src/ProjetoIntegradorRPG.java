@@ -26,6 +26,8 @@ public class ProjetoIntegradorRPG {
     static String[][] desafios = new String[5][9];
     static int linhaUsuario = 0;
     static int desafiosResolvidos = 0;
+    static int ultimaEscolha = -1;
+    static int[] ultimoIndice = new int[7];
 
     static String[] comoJogar = new String[]{
         "Este jogo consiste em perguntas e respostas, onde vc decide a dificuldade dessas perguntas.",
@@ -61,9 +63,6 @@ public class ProjetoIntegradorRPG {
          "batem mais parece que ele não está lá. entrando no carro do policial você avista em um tipo" ,
          "de papel alguns números porém esta incompleto." ,
     };
-
-    static int ultimaEscolha = -1;
-    static int[] ultimoIndice = new int[7];
 
     //{ NÚMERO ÍNDICE ENREDO, EXIBIR DESAFIO, DADO DO USUÁRIO >= 15 EXIBIR HISTÓRIA }
     //0 - NÃO 1 - SIM
@@ -139,8 +138,9 @@ public class ProjetoIntegradorRPG {
                     int dado = jogarDado1a20();
                     exibir = dado >= 15;
                     if (!exibir) {
-                        System.out.printf("Valor insuficiente, tente na próxima.\n\n");
+                        System.out.printf("Valor insuficiente, tente na próxima.\n");
                     }
+                    aguardar(1);
                 } else {
                     exibir = false;
                 }
@@ -164,7 +164,8 @@ public class ProjetoIntegradorRPG {
             if (linhaEscolhaUsuario) {
                 System.out.println("");   
             }
-            if (indiceDado()) {
+            boolean exibirEnredo = indiceDado();
+            if (exibirEnredo) {
                 System.out.println(enredo[linhaUsuario]);
             }
             
@@ -180,7 +181,9 @@ public class ProjetoIntegradorRPG {
                 }
             } else {
                 //Espera 3 segundos para continuar
-                aguardar(3);
+                if(exibirEnredo) {
+                    aguardar(3);
+                }
 
                 if (indiceExibirDesafio()) {
                     exibirDesafio();
