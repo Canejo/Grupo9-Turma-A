@@ -93,14 +93,14 @@ public class ProjetoIntegradorRPG {
     };
 
     static String[][] facil = new String[][]{
-        {"Facil a", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},
-        {"Facil b", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},
-        {"Facil c", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},
-        {"Facil d", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},};
+        {"O número 1001 1001 0111‬ em sistema de base 2, seria representado por qual opção abaixo:", "2455", "998", "1000", "45E", "a", "Dica 1", "Dica 2", "Dica 3"},
+        {"Os computadores utilizam o sistema binário que é um sistema de numeração em que todas as quantidades se representam com base em dois números, ou seja, (0 e 1). Em um computador o número 2012, em base decimal, será representado, em base binária, por:", "110111", "11111011100", "111110111000", "111110111", "b", "Dica 1", "Dica 2", "Dica 3"},
+        {"Este o enigma (C=A.B) corresponde a qual porta lógica?", "Porta NAND", "Porta NOT", "Porta AND", "Porta OR", "c", "Dica 1", "Dica 2", "Dica 3"},
+        {"Abaixo apresentamos quatro números em suas representações binárias. \n\n 1) 0101001\n2) 1101001\n3) 0001101\n4) 1010110\n\nAssinale a alternativa que apresenta o somatório dos 4 números acima convertidos para o formato decimal.", "245", "101", "111", "267", "a", "Dica 1", "Dica 2", "Dica 3"},};
 
     static String[][] medio = new String[][]{
-        {"Medio e", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},
-        {"Medio f", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},
+        {"Para atravessar um lago(L), deve ser usado a seguinte expressão lógica L = !P, onde P são as pessoas, podemos deduzir que:", "As pessoas que querem atravessar tem como valor 0", "As pessoas que querem atravessar tem como valor 1", "O lago funciona como a porta lógica inversora", "Alternativas a e c estão corretas", "d", "Dica 1", "Dica 2", "Dica 3"},
+        {"Portas ou circuitos lógicos são dispositivos que operam um ou mais sinais lógicos de entrada para produzir uma e somente uma saída, dependente da função implementada no circuito. São geralmente usadas em circuitos eletrônicos, por causa das situações que os sinais deste tipo de circuito podem apresentar: presença de sinal, ou “1”; e ausência de sinal, ou “0”.\\nPara a tabela verdade apresentada a seguir, é correto afirmar que, em ordem, as portas lógicas são: ", "NAND; NOR; AND; OR", "NAND; NOR; OR; AND", "AND; NOR; NAND; OR", "NAND; OR; AND; NOR", "c", "Dica 1", "Dica 2", "Dica 3"},
         {"Medio g", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},};
 
     static String[][] dificil = new String[][]{
