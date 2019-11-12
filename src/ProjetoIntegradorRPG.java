@@ -41,37 +41,100 @@ public class ProjetoIntegradorRPG {
     static String[] enredo = new String[]{
         "Toda história tem um início e a sua começa aqui...",
         "Jornal Senac 10/02/2098 - \"Nova descoberta revolucionária promete rejuvenescer pessoas\"",
-         "Jornal Senac 15/06/2098 - \"A descoberta foi um sucesso e recebe o nome de 942z\"" ,
-         "Jornal Senac 06/09/2099 - \"Teste da milagrosa 942z em humanos começa\"" ,
-         "Como um dia qualquer você acorda um dia ensolarado, tudo ocorre normalmente a única " ,
-         "coisa que te incomoda é esse cheiro incessante de queimado" ,
-         "quando você se aproxima avista ao lado leste da cidade fumaça subindo, quando passa " ,
-         "carros de polícia e de bombeiros." ,
-         "Dica do mestre ligue a televisão." ,
-         "Ligar televisão?" ,
-         "Jornal senac - eles esconderam tudo de nós os testes deram errado fujam para o posto de ajuda." ,
-         "bom infelizmente a transmissão foi cortada!" ,
-         "- 	Continua a História	 -" ,
-         "- 	Continua a História	-" ,
-         "Quando você escuta “Saiam Já de suas casas é uma ordem, estamos checando todos os" ,
-         "moradores desta região, então falarei mais uma vez, SAIAM JÀ DE SUAS CASA”." ,
-         "é um policial com um alto - falante." ,
-         "Vai sair de casa ?" ,
-         "chegando na rua o soldado passa uma especie de maquina voce não entendo muito bem" ,
-         "mais parece q eles esta procurando algo. Então ele te libera e continua chamando os outros" ,
-         "moradores da rua. Até que eles chegam em frente a casa de seu melhor amigo. batem e" ,
-         "batem mais parece que ele não está lá. entrando no carro do policial você avista em um tipo" ,
-         "de papel alguns números porém esta incompleto." ,
-    };
+        "Jornal Senac 15/06/2098 - \"A descoberta foi um sucesso e recebe o nome de 942z\"",
+        "Jornal Senac 06/09/2099 - \"Teste da milagrosa 942z em humanos começa\"",
+        "Como um dia qualquer você acorda um dia ensolarado, tudo ocorre normalmente a única ",
+        "coisa que te incomoda é esse cheiro incessante de queimado",
+        "quando você se aproxima avista ao lado leste da cidade fumaça subindo, quando passa ",
+        "carros de polícia e de bombeiros.",
+        "Dica do mestre ligue a televisão.",
+        "Ligar televisão?",
+        "Jornal senac - eles esconderam tudo de nós os testes deram errado fujam para o posto de ajuda.",
+        "bom infelizmente a transmissão foi cortada!",
+        " ",
+        " ",
+        "Quando você escuta “Saiam Já de suas casas é uma ordem, estamos checando todos os",
+        "moradores desta região, então falarei mais uma vez, SAIAM JÀ DE SUAS CASA”.",
+        "é um policial com um alto - falante.",
+        "Vai sair de casa ?",
+        "chegando na rua o soldado passa uma especie de maquina voce não entendo muito bem",
+        "mais parece q eles esta procurando algo. Então ele te libera e continua chamando os outros",
+        "moradores da rua. Até que eles chegam em frente a casa de seu melhor amigo. batem e",
+        "batem mais parece que ele não está lá. entrando no carro do policial você avista em um tipo",
+        "de papel alguns números porém esta incompleto.",
+        " ",
+        "você observa que não são apenas números aleatórios mas sim uma fórmula, até que você escuta :",
+        "“ parado aí você vamos verificar seu corpo… ei você está me ouvindo?, mais um passo eu atiro !!!”",
+        "Quando na frente de seu carro aquela pessoa avança no policial os dois caem ao chão sem ",
+        "pensar o soldado que estava no banco do motorista da partida e passa por cima dos dois.",
+        "estranhamente  seu amigo está a sua frente, tenta falar com ele mais não parece surtir ",
+        "efeito, ele está quieto apenas não te responde, aparentemente não há nada de diferente. ",
+        "todos os outros apesar de estarem com medo parecem normais. até que um deles fala :",
+        "  - Pessoa : “Ou Policial nos explique oque esta acontecendo… soldado oque esta acontecendo na cidade?”",
+        "  - Policial : “Eu não sei muito bem, e o pouco que sei não posso dizer a vcs...”",
+        "  - Pessoa : “O que mais como assim não pode nos contar?... tem coisas estranhas por aí atacando pessoas e você não vai nos contar? está me ouvindo?”	",
+        "Então esta pessoa começa a puxar o policial pelo ombro",
+        "  - Policial: ”Pare de insistir se não lhe mato aqui mesmo...”",
+        "  - Pessoa: “Você não pode fazer isso eu sou um cidadão desta cidade você tem que me explicar... ”",
+        "sem hesitar o policial saca sua arma se vira e aponta ela para aquela pessoa.",
+        "com a tensão do momento o policial acaba perdendo o controle do carro e caindo de uma ribanceira.",
+        "Após uns 15 minutos você acorda seu amigo está te puxando para fora do carro, infelizmente",
+        "vocês são os únicos sobreviventes,e estão no meio da floresta perdidos, quando você se",
+        "lembre dentro do carro havia alguns papéis, um deles é um mapa da área e o outro a fórmula ",
+        "estranha que você viu quando entrou no carro.",
+        " ",
+        "Bom você sabe exatamente onde estão seguindo a oeste chegam lá sem o menor problema.",
+        "Ao cair da noite vocês chegam contam aos guardas o que houve e conseguem passar.",
+        "Em meio a noite o seu amigo começa a se debater e contorcer na cama…",
+        "Os médicos entram lhe dão um sedativo e você apaga novamente,antes de estar totalmente sedado você escuta você deu a dóse na pessoa errada era no infectado.",
+        "Então você acorda a muitos corpos no chão parece que houve uma guerra ou algo assim, ",
+        "saindo do quarto você encontra seu melhor amigo, sem pensar você pergunta :",
+        "  - Você : “ Oque aconteceu?... porque te levaram?”",
+        "  - Amigo : “eu não sei, eles apenas me levaram injetaram algo em mim ...”",
+        "De repente você escuta batidas na porta atrás de vocês, rapidamente o seu amigo lhe puxa ",
+        "para dentro de uma das salas daquele corredor, Diferente daquela que você passou a noite esta sala parece uma de pesquisas.",
+        "  - Amigo: “OU..OU...OU...ESTÁ OLHANDO PARA ONDE, eu arrasto as coisas você faz a fórmula.",
+        "explicando rapidamente você já viu uma parte da fórmula agora termine o resto eu seguro a porta”",
+        "  - Amigo: “Na segunda gaveta está o passo a passo da fórmula final”",
+        "Analisando o passo a passo tem coisas como:",
+        "Conversão de decimal para binário.",
+        "porta lógica.",
+        "mintermo/maxtermo.",
+        "algebra de boole.",
+        "mapa karnaugh",
+        "  - Amigo: “Você não faz a mínima ideia de como faz né? eu vou dar uma explicação rápida sobre tudo que está aí”",
+        "  - Amigo: ”Conversão de decimal para binário.",
+        "Para realizar a conversão de decimal para binário, realiza-se a divisão sucessiva por 2.”",
+        "  - Amigo: ”porta lógica\"existem diversa portas lógicas porém as 3 bases são:\n"
+        + "NOT : a’  sempre inversa do valor base\n"
+        + "OR : a+b uma das variáveis tem que dar 1\n"
+        + "AND : a*b para dar 1 as duas variáveis tem que ser 1”",
+        "  - Amigo: ”mintermo/maxtermo.\n"
+        + "mintermo :”multiplica as variáveis”\n"
+        + "maxtermo :”soma as variáveis”",
+        "  - Amigo: “algebra de boole.\n"
+        + "“NOT : Sempre inversa do valor base”\n"
+        + "“OR : Uma das variáveis tem que dar 1”\n"
+        + "“AND : Para dar 1 as duas variáveis tem que ser 1”",
+        "  - Amigo: “Mapa de karnaugh\n"
+        + "“Unir o máximo de 1 possíveis”\n"
+        + "“sendo possível unir : 1,2,4,8,16”\n",
+        " ",
+        " - Amigo : “Anda logo eu não vou conseguir segurar por muito tempo… Rápido!!! ”",
+        " ",
+        "As batidas parece que aumentaram quando seu amigo cai…",
+        " ",
+        
+        
+        };
 
     //{ NÚMERO ÍNDICE ENREDO, EXIBIR DESAFIO, DADO DO USUÁRIO >= 15 EXIBIR HISTÓRIA }
     //0 - NÃO 1 - SIM
-    static int[][] indiceEnredo = new int[][] {
-        { 8, 0, 1 },
-        { 9, 0, 0, 10, 14, 15, 16 },
-        { 17, 0, 0, 18, 19, 20, 21 },
-        { 22, 1, 0 },
-    };
+    static int[][] indiceEnredo = new int[][]{
+        {8, 0, 1},
+        {9, 0, 0, 10, 14, 15, 16},
+        {17, 0, 0, 18, 19, 20, 21},
+        {22, 1, 0},};
 
     static String[] creditos = new String[]{
         "==================",
@@ -102,12 +165,11 @@ public class ProjetoIntegradorRPG {
         {"Dificil i", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},
         {"Dificil j", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},};
 
-    
     static int[] retornarIndiceEnrredo() {
         int[] indice = new int[3];
 
         for (int i = 0; i < indiceEnredo.length; i++) {
-            if(indiceEnredo[i][0] == linhaUsuario) {
+            if (indiceEnredo[i][0] == linhaUsuario) {
                 indice = indiceEnredo[i];
             }
         }
@@ -154,7 +216,7 @@ public class ProjetoIntegradorRPG {
         linhaUsuario = 0;
         desafiosResolvidos = 0;
         limparEscolha();
-        
+
         //Escolha da dificuldade e escolha dos desafios
         dificuldadeJogo();
         System.out.println("");
@@ -162,13 +224,13 @@ public class ProjetoIntegradorRPG {
             int[] indice = retornarIndiceEnrredo();
             boolean linhaEscolhaUsuario = indice[0] > 0 && indice.length > 3;
             if (linhaEscolhaUsuario) {
-                System.out.println("");   
+                System.out.println("");
             }
             boolean exibirEnredo = indiceDado();
             if (exibirEnredo) {
                 System.out.println(enredo[linhaUsuario]);
             }
-            
+
             if (linhaEscolhaUsuario) {
                 //Salvando info do indice para verificar onde trecho da escolha termina
                 ultimoIndice = indice;
@@ -176,35 +238,35 @@ public class ProjetoIntegradorRPG {
                 System.out.println("");
                 if (ultimaEscolha == 1) { //Sim
                     linhaUsuario = indice[3];
-                } else if(ultimaEscolha == 2) { //Não
+                } else if (ultimaEscolha == 2) { //Não
                     linhaUsuario = indice[5];
                 }
             } else {
                 //Espera 3 segundos para continuar
-                if(exibirEnredo) {
+                if (exibirEnredo) {
                     aguardar(3);
                 }
 
                 if (indiceExibirDesafio()) {
                     exibirDesafio();
                 }
-                
-                if (ultimaEscolha == 1 && linhaUsuario == ultimoIndice[4]){
+
+                if (ultimaEscolha == 1 && linhaUsuario == ultimoIndice[4]) {
                     linhaUsuario = ultimoIndice[6] + 1;
                     limparEscolha();
-                } else if(ultimaEscolha == 1  && linhaUsuario == ultimoIndice[6]) {
+                } else if (ultimaEscolha == 1 && linhaUsuario == ultimoIndice[6]) {
                     limparEscolha();
                     linhaUsuario++;
                 } else {
                     linhaUsuario++;
                 }
             }
-        } while(linhaUsuario < enredo.length);
+        } while (linhaUsuario < enredo.length);
         System.out.println("Fim");
 
         creditos(true);
     }
-    
+
     static void limparEscolha() {
         ultimaEscolha = -1;
         ultimoIndice = new int[7];
@@ -234,7 +296,7 @@ public class ProjetoIntegradorRPG {
 
             do {
                 //Exibindo enunciado do desafio
-                
+
                 System.out.printf("\n%sDESAFIO %d%s\n", ANSI_CYAN, desafiosResolvidos + 1, ANSI_RESET);
                 System.out.printf("\n%s\n", proximoDesafio[0]);
 
@@ -296,7 +358,7 @@ public class ProjetoIntegradorRPG {
 
         selecionarMenu(opcaoMenu);
     }
-    
+
     static void aguardar(int segundos) {
         try {
             Thread.sleep(segundos * 1000);
