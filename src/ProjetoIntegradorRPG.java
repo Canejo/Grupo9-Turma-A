@@ -51,18 +51,15 @@ public class ProjetoIntegradorRPG {
         "Ligar televisão?",
         "Jornal senac - eles esconderam tudo de nós os testes deram errado fujam para o posto de ajuda.",
         "bom infelizmente a transmissão foi cortada!",
-        " ",
-        " ",
         "Quando você escuta “Saiam Já de suas casas é uma ordem, estamos checando todos os",
         "moradores desta região, então falarei mais uma vez, SAIAM JÀ DE SUAS CASA”.",
         "é um policial com um alto - falante.",
         "Vai sair de casa ?",
-        "chegando na rua o soldado passa uma especie de maquina voce não entendo muito bem",
+        "Chegando na rua o soldado passa uma especie de maquina voce não entendo muito bem",
         "mais parece q eles esta procurando algo. Então ele te libera e continua chamando os outros",
         "moradores da rua. Até que eles chegam em frente a casa de seu melhor amigo. batem e",
         "batem mais parece que ele não está lá. entrando no carro do policial você avista em um tipo",
         "de papel alguns números porém esta incompleto.",
-        " ",
         "você observa que não são apenas números aleatórios mas sim uma fórmula, até que você escuta :",
         "“ parado aí você vamos verificar seu corpo… ei você está me ouvindo?, mais um passo eu atiro !!!”",
         "Quando na frente de seu carro aquela pessoa avança no policial os dois caem ao chão sem ",
@@ -82,7 +79,6 @@ public class ProjetoIntegradorRPG {
         "vocês são os únicos sobreviventes,e estão no meio da floresta perdidos, quando você se",
         "lembre dentro do carro havia alguns papéis, um deles é um mapa da área e o outro a fórmula ",
         "estranha que você viu quando entrou no carro.",
-        " ",
         "Bom você sabe exatamente onde estão seguindo a oeste chegam lá sem o menor problema.",
         "Ao cair da noite vocês chegam contam aos guardas o que houve e conseguem passar.",
         "Em meio a noite o seu amigo começa a se debater e contorcer na cama…",
@@ -105,37 +101,40 @@ public class ProjetoIntegradorRPG {
         "  - Amigo: “Você não faz a mínima ideia de como faz né? eu vou dar uma explicação rápida sobre tudo que está aí”",
         "  - Amigo: ”Conversão de decimal para binário.",
         "Para realizar a conversão de decimal para binário, realiza-se a divisão sucessiva por 2.”",
-        "  - Amigo: ”porta lógica\"existem diversa portas lógicas porém as 3 bases são:\n"
-        + "NOT : a’  sempre inversa do valor base\n"
-        + "OR : a+b uma das variáveis tem que dar 1\n"
-        + "AND : a*b para dar 1 as duas variáveis tem que ser 1”",
-        "  - Amigo: ”mintermo/maxtermo.\n"
-        + "mintermo :”multiplica as variáveis”\n"
-        + "maxtermo :”soma as variáveis”",
-        "  - Amigo: “algebra de boole.\n"
-        + "“NOT : Sempre inversa do valor base”\n"
-        + "“OR : Uma das variáveis tem que dar 1”\n"
-        + "“AND : Para dar 1 as duas variáveis tem que ser 1”",
-        "  - Amigo: “Mapa de karnaugh\n"
-        + "“Unir o máximo de 1 possíveis”\n"
-        + "“sendo possível unir : 1,2,4,8,16”\n",
-        " ",
+        "  - Amigo: ”porta lógica\"existem diversa portas lógicas porém as 3 bases são:",
+        "NOT : a’  sempre inversa do valor base",
+        "OR : a+b uma das variáveis tem que dar 1",
+        "AND : a*b para dar 1 as duas variáveis tem que ser 1”",
+        "  - Amigo: ”mintermo/maxtermo.",
+        "mintermo :”multiplica as variáveis”",
+        "maxtermo :”soma as variáveis”",
+        "  - Amigo: “algebra de boole.",
+        "“NOT : Sempre inversa do valor base”",
+        "“OR : Uma das variáveis tem que dar 1”",
+        "“AND : Para dar 1 as duas variáveis tem que ser 1”",
+        "  - Amigo: “Mapa de karnaugh",
+        "“Unir o máximo de 1 possíveis”",
+        "“sendo possível unir : 1,2,4,8,16”",
         " - Amigo : “Anda logo eu não vou conseguir segurar por muito tempo… Rápido!!! ”",
-        " ",
         "As batidas parece que aumentaram quando seu amigo cai…",
-        " ",};
+        "Você escuta batidas em sua porta. Eles arrombam ela instantaneamente partem para cima",
+        "te agarram e te levam pra prisão. entrando no carro do policial você avista em um tipo de",
+        "tablet alguns números porém esta incompleto."
+    };
 
     //{ NÚMERO ÍNDICE ENREDO, EXIBIR DESAFIO, DADO DO USUÁRIO >= 15 EXIBIR HISTÓRIA }
     //0 - NÃO 1 - SIM
     static int[][] indiceEnredo = new int[][]{
-        {8, 0, 1},
-        {9, 0, 0, 10, 0, 0, 16},
-        {17, 0, 0, 18, 19, 20, 21},
-        {22, 1, 0},
-        {42, 1, 0},
-        {79, 1, 0},
-        {81, 1, 0},
-        {83, 1, 0},};
+        { 8, 0, 1 },
+        { 9, 0, 0, 10, 11, 12, 12 },
+        { 15, 0, 0, 16, 77, 78, 80  },
+        { 21, 1, 0 },
+        { 39, 1, 0 },
+        { 75, 1, 0 },
+        { 76, 1, 0 },
+        { 77, 1, 0 },
+        { 80, 1, 0 },
+    };
 
     static String[] creditos = new String[]{
         "==================",
