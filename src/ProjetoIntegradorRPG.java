@@ -166,9 +166,11 @@ public class ProjetoIntegradorRPG {
             "Assinale a alternativa correta.", "Somente as afirmativas 1 e 4 são verdadeiras.", "Somente as afirmativas 2 e 3 são verdadeiras", "Somente as afirmativas 2 e 4 são verdadeiras.", "Somente as afirmativas 1, 3 e 4 são verdadeiras.", "c", "Dica 1", "Dica 2", "Dica 3"},};
 
     static String[][] dificil = new String[][]{
-        {"Dificil h", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},
-        {"Dificil i", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},
-        {"Dificil j", "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "a", "Dica 1", "Dica 2", "Dica 3"},};
+        {"Mapa de Karnaugh é um método de simplificação gráfico criado por Edward Veitch e aperfeiçoado pelo engenheiro de telecomunicações Maurice Karnaugh. Chamamos esse diagrama de mapa, visto este ser um mapeamento biunívoco a partir de uma tabela verdade da função que está a ser analisada.\n" +
+"Em que ano foi criado o mapa de Karnaugh?", "1880", "1876", "1952", "1980", "c", "MCMLII", "A partir de 1900", "Década de 50"},
+        {"Em que é utilizado o Mapa de karnaugh?", "Para simplificar uma equação lógica", "Para calcular a temperatura do oceano", "Para converter uma tabela verdade", "Simplificar uma equação lógica e converte uma tabela verdade no seu circuito lógico correspondente", "d", "O mapa é utilizado na simplificação", "Várias funcionalidades", "Circuito"},
+        {"O método de leitura por \"mapa de Karnaugh\" é considerado mais simples que a \"álgebra booleana\", pois elimina o problema de erro nas simplificações. Porém quando utilizado mais de N entradas, esse método se torna complicado, pois fica difícil identificar as células adjacentes no mapa. Para esse caso são utilizados soluções algorítmicas computacionais \n" +
+"Nos valores abaixo qual representa o valor de N entradas acima?", "3", "15", "5", "6", "d", "Raiz quadrada de 36", "2,5*2,4", "Utilize o Google"},};
 
     static int[] retornarIndiceEnrredo() {
         int[] indice = new int[3];
