@@ -163,7 +163,7 @@ public class ProjetoIntegradorRPG {
             "2. Um multiplexador pode ser implementado em dois estágios: o primeiro consiste em portas inversoras e portas AND entre os bits de seleção e o segundo em uma porta OR entre as saídas do primeiro estágio.\n" +
             "3. Um multiplexador pode ser implementado utilizando-se um conjunto de flip-flops conectados entre si através de portas AND, utilizando como sincronismo os bits de seleção.\n" +
             "4. Um multiplexador digital pode ser utilizado para gerar uma função lógica arbitrária das variáveis selecionadoras.\n" +
-            "Assinale a alternativa correta.", "Somente as afirmativas 1 e 4 são verdadeiras.", "Somente as afirmativas 2 e 3 são verdadeiras", "Somente as afirmativas 2 e 4 são verdadeiras.", "Somente as afirmativas 1, 3 e 4 são verdadeiras.", "c", "Dica 1", "Dica 2", "Dica 3"},};
+            "Assinale a alternativa correta.", "Somente as afirmativas 1 e 4 são verdadeiras.", "Somente as afirmativas 2 e 3 são verdadeiras", "Somente as afirmativas 2 e 4 são verdadeiras.", "Somente as afirmativas 1, 3 e 4 são verdadeiras.", "c", "Não é a alternatica b", "x + y = 6", "Alternativas pares corretas"},};
 
     static String[][] dificil = new String[][]{
         {"Mapa de Karnaugh é um método de simplificação gráfico criado por Edward Veitch e aperfeiçoado pelo engenheiro de telecomunicações Maurice Karnaugh. Chamamos esse diagrama de mapa, visto este ser um mapeamento biunívoco a partir de uma tabela verdade da função que está a ser analisada.\n" +
