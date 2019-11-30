@@ -209,7 +209,34 @@ public class ProjetoIntegradorRPG {
         "remove a chave da lanterna e coloca na porta, e agora entrar na sala ou voltar sem um item?",
         "Não entrar na sala",
         "Deseja entrar na sala?",
-        
+        "Logo que você abre percebe que a escolha não foi muito boa pois. Agora você vê o que",
+        "estava chorando. É uma mulher ele está ajoelhada e logo que você coloca a lanterna na nela, ",
+        "um grito incrivelmente alto e uma postura de agressividade parte dela. E correndo em sua ",
+        "direção de uma forma em que seu corpo não para de tremer em um instinto de sobrevivência ",
+        "você sai em disparada para sala de onde veio e se tranca lá.Muitos gritos começam, ",
+        "passa-se a noite dá pra escutar os guardas chegando na prisão logo sangue voa na porta ",
+        "e ela chega até você as batidas começam. os gritos parece que aumentaram e você cai ",
+        "até que ela quebra a porta avança em sua direção e arranca sua cabeça.",
+        "Logo você decide não abrir a porta e segue em direção ao Jschritt, chegando a cela "
+        "você encontra ele caído.",
+        "  - Jschirtt -Demorou um pouco porém ainda a tempo, se aproxime me parece que ",
+        "conseguiu quase todos os itens menos o balde, bom sem problema não fará muita falta.",
+        "Entregando os itens ele parece usar suas últimas forças para fazer aquilo.",
+        "  - Jschirtt - Misturando o C2H5OH com sangue e ...",
+        "finalmente terminei agora tomar coloca nesse seu braço.",
+        "logo seu braço para de queimar mas parece que não se curará totalmente",
+        "  - Jschritt -Bom essa era a única dose e eu sou o único que sabe fazer ",
+        "a cura e eles me deixaram aqui para morrer como um animal agora todos ",
+        "estão condenados. Agora toma esta chave nós estamos no centro de testes ",
+        "químicos do 942z no telhado tem um helicóptero se você conseguir controlar ",
+        "aconselho que vá para alguma ilha agora lá fora deve estar um caos… ",
+        "Bom como eu lhe disse o ser humano que é a infecção e não o 942z, ",
+        "A sim claro a senha para sair pela porta principal é 5477103. Adeus!",
+        "Quando você escuta : Jschirtt está aqui ele pode salvar a humanidade!!!",
+        "você sai correndo por onde ele mandou e entram pessoas pelo outro lado, ",
+        "olhando para trás o Jschirtt pega a seringa e se mata, Chegando no telhado ",
+        "tem as instruções de como pilotar o helicóptero, ",
+        "e uma mensagem: vai lá você consegue, Cortesia do seu amigo Jschirtt."
     };
 
     //{ NÚMERO ÍNDICE ENREDO, EXIBIR DESAFIO, DADO DO USUÁRIO >= 15 EXIBIR HISTÓRIA }
@@ -229,7 +256,7 @@ public class ProjetoIntegradorRPG {
         { 154, 1, 0 },
         { 162, 1, 0 },
         { 168, 0, 1 },
-        { 169, 0, 0,  },
+        { 169, 0, 0, 170, 177, 178, 197 },
     };
 
     static String[] creditos = new String[]{
